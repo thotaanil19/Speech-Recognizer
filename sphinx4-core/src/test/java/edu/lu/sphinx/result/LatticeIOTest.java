@@ -56,9 +56,9 @@ public class LatticeIOTest {
         Configuration configuration = new Configuration();
 
         // Load model from the jar
-        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-        configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
-        configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/result/hellongram.trigram.lm");
+        configuration.setAcousticModelPath("resource:/edu/lu/sphinx/models/en-us/en-us");
+        configuration.setDictionaryPath("resource:/edu/lu/sphinx/models/en-us/cmudict-en-us.dict");
+        configuration.setLanguageModelPath("resource:/edu/lu/sphinx/result/hellongram.trigram.lm");
 
         StreamSpeechRecognizer recognizer = new StreamSpeechRecognizer(configuration);
         InputStream stream = getClass().getResourceAsStream("green.wav");

@@ -24,10 +24,10 @@ public class WordSequenceTest {
         URL dictUrl =
                 getClass()
                         .getResource(
-                                "/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+                                "/edu/lu/sphinx/models/en-us/cmudict-en-us.dict");
         URL noiseDictUrl =
                 getClass().getResource(
-                        "/edu/cmu/sphinx/models/en-us/en-us/noisedict");
+                        "/edu/lu/sphinx/models/en-us/en-us/noisedict");
 
         dictionary =
                 new TextDictionary(dictUrl, noiseDictUrl, null, null,

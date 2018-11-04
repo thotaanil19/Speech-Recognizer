@@ -40,7 +40,7 @@ import java.util.prefs.Preferences;
 public class AudioTool {
 
     static final String CONTEXT = "AudioTool";
-    static final String PREFS_CONTEXT = "/edu/cmu/sphinx/tools/audio/"
+    static final String PREFS_CONTEXT = "/edu/lu/sphinx/tools/audio/"
             + CONTEXT;
     static final String FILENAME_PREFERENCE = "filename";
 

@@ -29,9 +29,9 @@ public class BatchForcedAlignerGrammarTest {
     public void testForcedAlignerGrammar() throws IOException, URISyntaxException {
         URL dictionaryUrl = getClass()
                 .getResource(
-                             "/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+                             "/edu/lu/sphinx/models/en-us/cmudict-en-us.dict");
         URL noisedictUrl = getClass()
-                .getResource("/edu/cmu/sphinx/models/en-us/en-us/noisedict");
+                .getResource("/edu/lu/sphinx/models/en-us/en-us/noisedict");
 
         Dictionary dictionary = new TextDictionary(dictionaryUrl,
                                                    noisedictUrl,

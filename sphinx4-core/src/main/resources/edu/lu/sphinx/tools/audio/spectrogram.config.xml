@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+
+    <component name="microphone"
+               type="edu.lu.sphinx.frontend.util.Microphone"/>
+
+    <component name="frontEnd" type="edu.lu.sphinx.frontend.FrontEnd">
+        <propertylist name="pipeline">
+            <item>streamDataSource</item>
+            <item>preemphasizer</item>
+            <item>windower</item>
+            <item>fft</item>
+        </propertylist>
+    </component>
+
+    <component name="preemphasizer"
+               type="edu.lu.sphinx.frontend.filter.Preemphasizer"/>
+
+    <component name="windower"
+               type="edu.lu.sphinx.frontend.window.RaisedCosineWindower">
+    </component>
+
+    <component name="fft"
+               type="edu.lu.sphinx.frontend.transform.DiscreteFourierTransform"/>
+
+    <component name="streamDataSource"
+               type="edu.lu.sphinx.frontend.util.StreamDataSource">
+        <property name="sampleRate" value="8000"/>
+    </component>
+
+    <component name="cepstrumFrontEnd" type="edu.lu.sphinx.frontend.FrontEnd">
+        <propertylist name="pipeline">
+            <item>cstreamDataSource</item>
+            <item>dither </item>
+            <item>cpreemphasizer</item>
+            <item>cwindower</item>
+            <item>cfft</item>
+            <item>melFilterBank</item>
+            
+            <!--item>dct</item-->            
+            <!--item>dataDumper</item-->
+            <!--item>liveCMN</item>
+            <item>featureExtraction</item-->
+        </propertylist>
+    </component>
+
+    <component name="cstreamDataSource" type="edu.lu.sphinx.frontend.util.StreamDataSource">
+        <property name="sampleRate" value="8000"/>
+    </component>
+   
+
+    <component name="cpreemphasizer"
+		type="edu.lu.sphinx.frontend.filter.Preemphasizer"/>
+    <component name="dither"
+		type="edu.lu.sphinx.frontend.filter.Dither"/>
+
+    
+    <component name="cwindower" 
+	type="edu.lu.sphinx.frontend.window.RaisedCosineWindower"/>
+    
+    <component name="cfft" 
+        type="edu.lu.sphinx.frontend.transform.DiscreteFourierTransform"/>
+    
+    <component name="melFilterBank" 
+        type="edu.lu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank">
+          <property name="numberFilters" value="31"/>
+          <property name="minimumFrequency" value="200"/>
+          <property name="maximumFrequency" value="3500"/>
+    </component>
+    
+    <component name="dct" 
+            type="edu.lu.sphinx.frontend.transform.DiscreteCosineTransform"/>
+
+
+    <component name="wavWriter" 
+                type="edu.lu.sphinx.frontend.util.WavWriter"/>
+
+    <component name="dataDumper" 
+                type="edu.lu.sphinx.frontend.util.DataDumper"/>
+    
+    <component name="liveCMN" 
+                type="edu.lu.sphinx.frontend.feature.LiveCMN"/>
+    
+    <component name="featureExtraction" 
+		type="edu.lu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
+
+</config>

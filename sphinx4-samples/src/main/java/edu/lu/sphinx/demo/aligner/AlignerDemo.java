@@ -39,9 +39,9 @@ import edu.lu.sphinx.result.WordResult;
  */
 public class AlignerDemo {
     private static final String ACOUSTIC_MODEL_PATH =
-            "resource:/edu/cmu/sphinx/models/en-us/en-us";
+            "resource:/edu/lu/sphinx/models/en-us/en-us";
     private static final String DICTIONARY_PATH =
-            "resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict";
+            "resource:/edu/lu/sphinx/models/en-us/cmudict-en-us.dict";
     private static final String TEXT = "one zero zero zero one nine oh two "
             + "one oh zero one eight zero three";
 

@@ -30,7 +30,7 @@ public class LargeNgramTest {
     public void testNgram() throws IOException {
         URL dictUrl = getClass().getResource("100.dict");
         URL noisedictUrl = getClass()
-                .getResource("/edu/cmu/sphinx/models/en-us/en-us/noisedict");
+                .getResource("/edu/lu/sphinx/models/en-us/en-us/noisedict");
 
         Dictionary dictionary = new TextDictionary(dictUrl,
                                                    noisedictUrl,

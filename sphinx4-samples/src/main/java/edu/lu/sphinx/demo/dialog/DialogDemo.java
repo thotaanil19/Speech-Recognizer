@@ -21,13 +21,13 @@ import edu.lu.sphinx.api.LiveSpeechRecognizer;
 public class DialogDemo {
 
     private static final String ACOUSTIC_MODEL =
-        "resource:/edu/cmu/sphinx/models/en-us/en-us";
+        "resource:/edu/lu/sphinx/models/en-us/en-us";
     private static final String DICTIONARY_PATH =
-        "resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict";
+        "resource:/edu/lu/sphinx/models/en-us/cmudict-en-us.dict";
     private static final String GRAMMAR_PATH =
-        "resource:/edu/cmu/sphinx/demo/dialog/";
+        "resource:/edu/lu/sphinx/demo/dialog/";
     private static final String LANGUAGE_MODEL =
-        "resource:/edu/cmu/sphinx/demo/dialog/weather.lm";
+        "resource:/edu/lu/sphinx/demo/dialog/weather.lm";
 
     private static final Map<String, Integer> DIGITS =
         new HashMap<String, Integer>();

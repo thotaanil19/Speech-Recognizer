@@ -32,18 +32,18 @@ public class AllphoneDemo {
 
         // Load model from the jar
         configuration
-                .setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+                .setAcousticModelPath("resource:/edu/lu/sphinx/models/en-us/en-us");
 
         // You can also load model from folder
         // configuration.setAcousticModelPath("file:en-us");
 
         configuration
-                .setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+                .setDictionaryPath("resource:/edu/lu/sphinx/models/en-us/cmudict-en-us.dict");
         Context context = new Context(configuration);
         context.setLocalProperty("decoder->searchManager", "allphoneSearchManager");
         Recognizer recognizer = context.getInstance(Recognizer.class);
         InputStream stream = AllphoneDemo.class
-                .getResourceAsStream("/edu/cmu/sphinx/demo/aligner/10001-90210-01803.wav");
+                .getResourceAsStream("/edu/lu/sphinx/demo/aligner/10001-90210-01803.wav");
         stream.skip(44);
 
         // Simple recognition with generic model

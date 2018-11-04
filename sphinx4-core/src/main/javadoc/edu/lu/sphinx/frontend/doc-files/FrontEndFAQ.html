@@ -90,36 +90,36 @@
 <ul>
     <li>FFT
         <ul>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/transform/DiscreteFourierTransform.html">DiscreteFourierTransform</a>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/transform/DiscreteFourierTransform.html">DiscreteFourierTransform</a>
             </li>
         </ul>
     </li>
     <li>Filter parameters (number of filters, lower frequency, upper frequency)
         <ul>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/frequencywarp/MelFrequencyFilterBank.html">MelFrequencyFilterBank</a>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/frequencywarp/MelFrequencyFilterBank.html">MelFrequencyFilterBank</a>
             </li>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/frequencywarp/PLPFrequencyFilterBank.html">PLPFrequencyFilterBank</a>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/frequencywarp/PLPFrequencyFilterBank.html">PLPFrequencyFilterBank</a>
             </li>
         </ul>
     </li>
     <li>Sample rate
         <ul>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/util/ConcatFileDataSource.html">ConcatFileDataSource</a>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/util/ConcatFileDataSource.html">ConcatFileDataSource</a>
             </li>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/util/Microphone.html">Microphone</a></li>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/util/StreamCepstrumSource.html">StreamCepstrumSource</a>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/util/Microphone.html">Microphone</a></li>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/util/StreamCepstrumSource.html">StreamCepstrumSource</a>
             </li>
             <li>
-                <a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/util/StreamDataSource.html">StreamDataSource</a>
+                <a href="../../../../../../javadoc/edu/lu/sphinx/frontend/util/StreamDataSource.html">StreamDataSource</a>
             </li>
         </ul>
     </li>
     <li>Window size and shift
         <ul>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/feature/LiveCMN.html">LiveCMN</a></li>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/window/RaisedCosineWindower.html">RaisedCosineWindower</a>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/feature/LiveCMN.html">LiveCMN</a></li>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/window/RaisedCosineWindower.html">RaisedCosineWindower</a>
             </li>
-            <li><a href="../../../../../../javadoc/edu/cmu/sphinx/frontend/util/StreamCepstrumSource.html">StreamCepstrumSource</a>
+            <li><a href="../../../../../../javadoc/edu/lu/sphinx/frontend/util/StreamCepstrumSource.html">StreamCepstrumSource</a>
             </li>
         </ul>
     </li>
@@ -134,7 +134,7 @@ There is a program called FeatureFileDumper that turns an audio file
 into binary cepstra file using the front end.
 To create MFCC cepstrum using this program,
 go to the
-<code>edu/cmu/sphinx/tools/feature</code> directory,
+<code>edu/lu/sphinx/tools/feature</code> directory,
 and type:
 <p>
     <code>ant -Dinput="input file" -Doutput="output file" cepstra_producer</code>
@@ -154,7 +154,7 @@ and type:
 
 <p>
     As you might notice by comparing the files cepstra_dump.props
-    and spectra_dump.props in the "edu/cmu/sphinx/tools/feature" directory,
+    and spectra_dump.props in the "edu/lu/sphinx/tools/feature" directory,
     the only difference in setup between dumping different types of
     features is in the sequence of data processors as specified in the
     properties file. If you give it a difference data processor sequence,

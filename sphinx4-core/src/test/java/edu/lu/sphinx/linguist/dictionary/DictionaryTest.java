@@ -27,9 +27,9 @@ public class DictionaryTest {
     @Test
     public void testDictionary() throws IOException {
         URL dictUrl = getClass()
-                .getResource("/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+                .getResource("/edu/lu/sphinx/models/en-us/cmudict-en-us.dict");
         URL noiseDictUrl = getClass()
-                .getResource("/edu/cmu/sphinx/models/en-us/en-us/noisedict");
+                .getResource("/edu/lu/sphinx/models/en-us/en-us/noisedict");
 
         Dictionary dictionary = new TextDictionary(dictUrl,
                                                    noiseDictUrl,
@@ -60,9 +60,9 @@ public class DictionaryTest {
     @Test
     public void testBadDictionary() throws IOException {
         URL dictUrl = getClass()
-                .getResource("/edu/cmu/sphinx/linguist/dictionary/bad.dict");
+                .getResource("/edu/lu/sphinx/linguist/dictionary/bad.dict");
         URL noiseDictUrl = getClass()
-                .getResource("/edu/cmu/sphinx/models/en-us/en-us/noisedict");
+                .getResource("/edu/lu/sphinx/models/en-us/en-us/noisedict");
 
         Dictionary dictionary = new TextDictionary(dictUrl,
                                                    noiseDictUrl,
