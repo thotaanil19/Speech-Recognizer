@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -157,8 +157,8 @@ public class ConfigurationManager implements Cloneable {
         if (ps == null)
             return null;
 
-        if (showCreations)
-            getRootLogger().config("Creating: " + instanceName);
+        /*if (showCreations)
+            getRootLogger().config("Creating: " + instanceName);*/
 
         return (C) ps.getOwner();
     }

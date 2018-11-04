@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 
 /** Provides mechanisms for computing statistics given a set of states and input data. */
@@ -215,7 +215,7 @@ public class BaumWelchLearner implements Learner {
             scoreList.add(score);
             lastFeatureIndex++;
         }
-        logger.info("Feature frames read: " + lastFeatureIndex);
+        logger.debug("Feature frames read: " + lastFeatureIndex);
         // Prepare for beta computation
         for (int i = 0; i < probCurrentFrame.length; i++) {
             probCurrentFrame[i] = LogMath.LOG_ZERO;

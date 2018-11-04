@@ -13,7 +13,7 @@ package edu.lu.sphinx.linguist.aflat;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import edu.lu.sphinx.decoder.scorer.ScoreProvider;
 import edu.lu.sphinx.frontend.Data;
@@ -222,10 +222,10 @@ public class AFlatLinguist implements Linguist, Configurable {
 	 * @return the search graph
 	 */
 	public SearchGraph getSearchGraph() {
-		logger.info("Generated Search Graph");
-		logger.info("Total Memory= " + runtime.totalMemory() / (1024 * 1024)
+		logger.debug("Generated Search Graph");
+		logger.debug("Total Memory= " + runtime.totalMemory() / (1024 * 1024)
 				+ " MB");
-		logger.info("Free Memory = " + runtime.freeMemory() / (1024 * 1024)
+		logger.debug("Free Memory = " + runtime.freeMemory() / (1024 * 1024)
 				+ " MB");
 		return searchGraph;
 	}
@@ -243,7 +243,7 @@ public class AFlatLinguist implements Linguist, Configurable {
 	}
 
 	public void allocate() throws IOException {
-		logger.info("Allocating DFLAT");
+		logger.debug("Allocating DFLAT");
 		allocateAcousticModel();
 		grammar.allocate();
 		hmmPool = new HMMPool(acousticModel, logger, unitManager);
@@ -253,7 +253,7 @@ public class AFlatLinguist implements Linguist, Configurable {
 		timer.start();
 		compileGrammar();
 		timer.stop();
-		logger.info("Done allocating  DFLAT");
+		logger.debug("Done allocating  DFLAT");
 	}
 
 	/**
@@ -292,14 +292,14 @@ public class AFlatLinguist implements Linguist, Configurable {
 	/** Compiles the grammar */
 	private void compileGrammar() {
 
-		logger.info("Compiling Grammar");
+		logger.debug("Compiling Grammar");
 		// iterate through the grammar nodes
 		Set<GrammarNode> nodeSet = grammar.getGrammarNodes();
 
 		for (GrammarNode node : nodeSet) {
 			initUnitMaps(node);
 		}
-		logger.info("Free Memory before generating Search Graph= "
+		logger.debug("Free Memory before generating Search Graph= "
 				+ runtime.freeMemory() / (1024 * 1024) + " MB");
 		searchGraph = new DynamicFlatSearchGraph();
 	}
@@ -643,7 +643,7 @@ public class AFlatLinguist implements Linguist, Configurable {
 		public SearchStateArc[] getSuccessors() {
 			counterForMemoryLogging++;
 			if (counterForMemoryLogging % 500000 == 0) {
-				logger.info("Free Memory= " + runtime.freeMemory()
+				logger.debug("Free Memory= " + runtime.freeMemory()
 						/ (1024 * 1024) + " MB" + "\tMax Memory= "
 						+ runtime.maxMemory() / (1024 * 1024) + "MB");
 			}

@@ -5,9 +5,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Level;
+//import java.util.*;
+//import java.util.logging.Level;
+import org.apache.log4j.Logger;
 
 /**
  * A property sheet which defines a collection of properties for a single component
@@ -828,7 +838,7 @@ public class PropertySheet implements Cloneable {
         // if there's a logLevel set for component apply to the logger
         Object rawLogLevel = rawProps.get(COMP_LOG_LEVEL);
         if (rawLogLevel != null)
-            logger.setLevel(rawLogLevel instanceof String ? Level.parse((String) rawLogLevel) : (Level) rawLogLevel);
+            logger.setLevel(rawLogLevel instanceof String ? Level.toLevel((String) rawLogLevel) : (Level) rawLogLevel);
 
         return logger;
     }

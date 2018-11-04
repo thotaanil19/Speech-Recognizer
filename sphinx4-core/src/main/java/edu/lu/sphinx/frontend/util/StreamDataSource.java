@@ -185,7 +185,7 @@ public class StreamDataSource extends BaseDataProcessor {
                         streamEndReached = true;
                     }
                 } else {
-                    logger.warning("Input stream is not set");
+                    logger.warn("Input stream is not set");
                     if (!utteranceEndSent) {
                         output = new DataEndSignal(getDuration());
                         utteranceEndSent = true;

@@ -13,7 +13,7 @@
 package edu.lu.sphinx.util;
 
 import java.text.DecimalFormat;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Keeps track of execution times. This class provides methods that can be used for timing processes. The process to be
@@ -236,9 +236,9 @@ public class Timer {
         }
 
         if (notReliable) {
-            logger.info(Utilities.pad(name, 20) + ' ' + "Not reliable.");
+            logger.debug(Utilities.pad(name, 20) + ' ' + "Not reliable.");
         } else {
-            logger.info(Utilities.pad(name, 20) + ' ' 
+            logger.debug(Utilities.pad(name, 20) + ' ' 
                     + Utilities.pad(String.valueOf(count), 8)
                     + fmtTime(curTime)
                     + fmtTime(minTime)

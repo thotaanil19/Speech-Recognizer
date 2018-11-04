@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Keeps references to a list of timers which can be referenced by a key-pair consisting of an owner and a timer name.
@@ -82,8 +82,8 @@ public class TimerPool {
         String titleBar =
                 "# ----------------------------- " + title +
                         "----------------------------------------------------------- ";
-        logger.info(Utilities.pad(titleBar, 78));
-        logger.info(Utilities.pad("# Name", 20) + ' '
+        logger.debug(Utilities.pad(titleBar, 78));
+        logger.debug(Utilities.pad("# Name", 20) + ' '
          + Utilities.pad("Count", 8)
          + Utilities.pad("CurTime", 10)
          + Utilities.pad("MinTime", 10)

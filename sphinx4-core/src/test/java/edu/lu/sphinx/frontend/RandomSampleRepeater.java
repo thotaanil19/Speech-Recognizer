@@ -1,7 +1,7 @@
 package edu.lu.sphinx.frontend;
 
 import java.util.Random;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -175,7 +175,7 @@ public class RandomSampleRepeater extends BaseDataProcessor {
 
             extFeatures = new double[insertLength + inFeatures.length];
 
-            logger.fine("RSR: repeat snippet with length " + insertLength + " at position " + nextInsertionPoint);
+            logger.warn("RSR: repeat snippet with length " + insertLength + " at position " + nextInsertionPoint);
 
             // copy the existing block into the new array and replicate the desired snippet inbetween
             int startIndex = (int) (nextInsertionPoint - doubleData.getFirstSampleNumber());

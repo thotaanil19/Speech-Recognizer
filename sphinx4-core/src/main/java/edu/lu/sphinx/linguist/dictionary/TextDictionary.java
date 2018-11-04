@@ -30,7 +30,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Creates a dictionary by quickly reading in an ASCII-based Sphinx-3 format
@@ -175,13 +175,13 @@ public class TextDictionary implements Dictionary {
 
             loadTimer.start();
 
-            logger.info("Loading dictionary from: " + wordDictionaryFile);
+            logger.debug("Loading dictionary from: " + wordDictionaryFile);
 
             loadDictionary(wordDictionaryFile.openStream(), false);
 
             loadCustomDictionaries(addendaUrlList);
 
-            logger.info("Loading filler dictionary from: " + fillerDictionaryFile);
+            logger.debug("Loading filler dictionary from: " + fillerDictionaryFile);
 
             loadDictionary(fillerDictionaryFile.openStream(), true);
 
@@ -325,11 +325,11 @@ public class TextDictionary implements Dictionary {
 
         String word = dictionary.get(text);
         if (word == null) { // deal with 'not found' case
-            logger.info("The dictionary is missing a phonetic transcription for the word '" + text + "'");
+            logger.debug("The dictionary is missing a phonetic transcription for the word '" + text + "'");
             if (wordReplacement != null) {
                 wordObject = getWord(wordReplacement);
             } else if (g2pModelFile != null && !g2pModelFile.getPath().equals("")) {
-                logger.info("Generating phonetic transcription(s) for the word '" + text + "' using g2p model");
+                logger.debug("Generating phonetic transcription(s) for the word '" + text + "' using g2p model");
                 wordObject = extractPronunciation(text);
                 wordDictionary.put(text, wordObject);
             }
@@ -478,7 +478,7 @@ public class TextDictionary implements Dictionary {
     private void loadCustomDictionaries(List<URL> addenda) throws IOException {
         if (addenda != null) {
             for (URL addendumUrl : addenda) {
-                logger.info("Loading addendum dictionary from: " + addendumUrl);
+                logger.debug("Loading addendum dictionary from: " + addendumUrl);
                 loadDictionary(addendumUrl.openStream(), false);
             }
         }

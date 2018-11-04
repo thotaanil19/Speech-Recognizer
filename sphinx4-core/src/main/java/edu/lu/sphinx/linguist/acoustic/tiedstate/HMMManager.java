@@ -17,7 +17,7 @@ import edu.lu.sphinx.linguist.acoustic.HMMPosition;
 import edu.lu.sphinx.linguist.acoustic.Unit;
 
 import java.util.*;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -90,6 +90,6 @@ public class HMMManager implements Iterable<HMM> {
      * @param logger logger to use for this logInfo
      */
     public void logInfo(Logger logger) {
-        logger.info("HMM Manager: " + getNumHMMs() + " hmms");
+        logger.debug("HMM Manager: " + getNumHMMs() + " hmms");
     }
 }

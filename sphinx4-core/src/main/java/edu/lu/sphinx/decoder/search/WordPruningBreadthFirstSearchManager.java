@@ -28,7 +28,7 @@ import edu.lu.sphinx.util.props.*;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Provides the breadth first search. To perform recognition an application
@@ -387,10 +387,10 @@ public class WordPruningBreadthFirstSearchManager extends TokenSearchManager {
     protected void growBranches() {
         growTimer.start();
         float relativeBeamThreshold = activeList.getBeamThreshold();
-        if (logger.isLoggable(Level.FINE)) {
-            logger.fine("Frame: " + currentFrameNumber + " thresh : " + relativeBeamThreshold + " bs "
+        /*if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+            logger.warn("Frame: " + currentFrameNumber + " thresh : " + relativeBeamThreshold + " bs "
                     + activeList.getBestScore() + " tok " + activeList.getBestToken());
-        }
+        }*/
         for (Token token : activeList) {
             if (token.getScore() >= relativeBeamThreshold && allowExpansion(token)) {
                 collectSuccessorTokens(token);
@@ -529,7 +529,7 @@ public class WordPruningBreadthFirstSearchManager extends TokenSearchManager {
         tokenCount++;
 
         if ((tokenCount % 1000) == 0) {
-            logger.info("Average Tokens/State: " + (tokenSum / tokenCount));
+            logger.debug("Average Tokens/State: " + (tokenSum / tokenCount));
         }
     }
 

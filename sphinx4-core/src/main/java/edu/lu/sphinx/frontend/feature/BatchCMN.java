@@ -167,7 +167,7 @@ public class BatchCMN extends BaseDataProcessor {
             cmn.append (formatter.format(sums[i]));
             cmn.append(' ');
         }
-        logger.info(cmn.toString());
+        logger.debug(cmn.toString());
 
         for (Data data : cepstraList) {
             if (data instanceof DoubleData) {

@@ -94,7 +94,7 @@ public class TrainerAcousticModel extends TiedStateAcousticModel {
 	 */
 	public void save(String name) throws IOException {
 		saver.save(name, true);
-		logger.info("saved models with " + saver);
+		logger.debug("saved models with " + saver);
 	}
 
 	/**

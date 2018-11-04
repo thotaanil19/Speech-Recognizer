@@ -161,7 +161,7 @@ abstract public class AccuracyTracker
         if (showDetails) {
             aligner.printSentenceSummary();
             if (showRaw) {
-                logger.info("RAW     " + rawText);
+                logger.debug("RAW     " + rawText);
             }
             aligner.printTotalSummary();
         }
@@ -178,7 +178,7 @@ abstract public class AccuracyTracker
     public void statusChanged(Recognizer.State status) {
         if (status == State.DEALLOCATED) {
             if (showSummary) {
-                logger.info("\n# --------------- Summary statistics ---------");
+                logger.debug("\n# --------------- Summary statistics ---------");
                 aligner.printTotalSummary();
             }
         }

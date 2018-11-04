@@ -3,7 +3,7 @@ package edu.lu.sphinx.jsgf;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -34,7 +34,7 @@ public class GrXMLHandler extends DefaultHandler {
         JSGFRule newRule = null;
         JSGFRule topRule = null;
 
-        logger.fine("Starting element " + qName);
+        logger.warn("Starting element " + qName);
         if (qName.equals("rule")) {
             String id = attributes.getValue("id");
             if (id != null) {
@@ -68,7 +68,7 @@ public class GrXMLHandler extends DefaultHandler {
         if (item.length() == 0)
             return;
 
-        logger.fine ("Processing text " + item);
+        logger.warn ("Processing text " + item);
 
         JSGFRuleToken newRule = new JSGFRuleToken(item);
         addToCurrent(newRule, newRule);
@@ -102,7 +102,7 @@ public class GrXMLHandler extends DefaultHandler {
     
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXParseException {
-        logger.fine ("Ending element " + qName);
+        logger.warn ("Ending element " + qName);
         
         if (qName.equals("item") || qName.equals("one-of") || qName.equals("rule"))
             currentRule = currentRule.parent;

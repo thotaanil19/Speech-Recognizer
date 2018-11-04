@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Decodes a batch file containing a list of files to decode. The files can be
@@ -209,24 +209,24 @@ public class BatchModeRecognizer implements Configurable {
             setBatchFile(batchFile);
 
             batchManager.start();
-            logger.info("BatchDecoder: decoding files in "
+            logger.debug("BatchDecoder: decoding files in "
                     + batchManager.getFilename());
 
             while (count < utteranceId &&
                     (batchItem = batchManager.getNextItem()) != null) {
                 setInputStream(batchItem.getFilename());
                 Result result = recognizer.recognize(batchItem.getTranscript());
-                logger.info("File  : " + batchItem.getFilename());
-                logger.info("Result: " + result);
+                logger.debug("File  : " + batchItem.getFilename());
+                logger.debug("Result: " + result);
                 count++;
             }
             batchManager.stop();
             recognizer.deallocate();
         } catch (IOException io) {
-            logger.severe("I/O error during decoding: " + io.getMessage());
+            logger.warn("I/O error during decoding: " + io.getMessage());
             throw io;
         }
-        logger.info("BatchDecoder: " + count + " files decoded");
+        logger.debug("BatchDecoder: " + count + " files decoded");
     }
 
 
@@ -241,17 +241,17 @@ public class BatchModeRecognizer implements Configurable {
             InputStream is;
             try {
                 File file = new File(filename);
-                logger.info
+                logger.debug
                         (AudioSystem.getAudioFileFormat(file).toString());
                 is = AudioSystem.getAudioInputStream(file);
             } catch (UnsupportedAudioFileException uafe) {
-                logger.info
+                logger.debug
                         ("Reading " + filename + " as raw audio file.");
                 is = new FileInputStream(filename);
 		// Total hack: NIST Sphere files aren't supported by
 		// javax.sound, so skip their header
 		if (filename.toLowerCase().endsWith(".sph")) {
-			logger.info("Skipping 1024-byte Sphere header.");
+			logger.debug("Skipping 1024-byte Sphere header.");
 			is.skip(1024);
 		}
             }
@@ -585,7 +585,7 @@ public class BatchModeRecognizer implements Configurable {
                 recognizer.deallocate();
             }
         } catch (IOException io) {
-            logger.severe("I/O error during decoding: " + io.getMessage());
+            logger.warn("I/O error during decoding: " + io.getMessage());
             throw io;
         }
     }
@@ -646,7 +646,7 @@ public class BatchModeRecognizer implements Configurable {
         recognizer.allocate();
         setBatchFile(batchFile);
         batchManager.start();
-        logger.info("BatchDecoder: decoding files in "
+        logger.debug("BatchDecoder: decoding files in "
                 + batchManager.getFilename());
         count = 0;
     }
@@ -665,11 +665,11 @@ public class BatchModeRecognizer implements Configurable {
                 (batchItem = batchManager.getNextItem()) != null) {
             setInputStream(batchItem.getFilename());
             result = recognizer.recognize(batchItem.getTranscript());
-            logger.info("File  : " + batchItem.getFilename());
-            logger.info("Result: " + result);
+            logger.debug("File  : " + batchItem.getFilename());
+            logger.debug("Result: " + result);
             count++;
         }
-        logger.info("BatchDecoder: " + count + " files decoded");
+        logger.debug("BatchDecoder: " + count + " files decoded");
         return result;
     }
 }

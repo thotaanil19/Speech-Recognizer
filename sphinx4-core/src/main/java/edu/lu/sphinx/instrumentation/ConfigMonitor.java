@@ -19,7 +19,7 @@ import edu.lu.sphinx.util.props.tools.HTMLDumper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Shows the configuration currently in use. This monitor is typically added as a recognition monitor such that the
@@ -108,7 +108,7 @@ public class ConfigMonitor implements Configurable, Runnable, Monitor {
             try {
                 HTMLDumper.showConfigAsHTML(cm, "foo.html");
             } catch (IOException e) {
-                logger.warning("Can't open " + htmlPath + ' ' + e);
+                logger.warn("Can't open " + htmlPath + ' ' + e);
             }
         }
 
@@ -116,7 +116,7 @@ public class ConfigMonitor implements Configurable, Runnable, Monitor {
             try {
                 GDLDumper.showConfigAsGDL(cm, gdlPath);
             } catch (IOException e) {
-                logger.warning("Can't open " + gdlPath + ' ' + e);
+                logger.warn("Can't open " + gdlPath + ' ' + e);
             }
         }
 

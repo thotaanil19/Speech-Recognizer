@@ -1,0 +1,6 @@
+#JSGF V1.0;
+
+grammar wish;
+
+public <start> = hello | hi | good | good morning | good evening | morning | evening;
+public <end> = bye | see you later | good night | good bye;

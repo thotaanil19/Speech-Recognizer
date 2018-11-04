@@ -25,7 +25,7 @@ import edu.lu.sphinx.util.props.*;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * An acoustic model saver that saves sphinx3 ascii data.
@@ -166,10 +166,10 @@ public class Sphinx3Saver implements Saver {
      */
     public void save(String modelName, boolean b) throws IOException {
 
-        logger.info("Saving acoustic model: " + modelName);
-        logger.info("    Path      : " + location);
-        logger.info("    modellName: " + modelName);
-        logger.info("    dataDir   : " + dataDir);
+        logger.debug("Saving acoustic model: " + modelName);
+        logger.debug("    Path      : " + location);
+        logger.debug("    modellName: " + modelName);
+        logger.debug("    dataDir   : " + dataDir);
 
         // save the acoustic properties file (am.props), 
         // create a different URL depending on the data format
@@ -210,8 +210,8 @@ public class Sphinx3Saver implements Saver {
      */
     private void saveDensityFileAscii(Pool<float[]> pool, String path, boolean append)
             throws FileNotFoundException, IOException {
-        logger.info("Saving density file to: ");
-        logger.info(path);
+        logger.debug("Saving density file to: ");
+        logger.debug(path);
 
         OutputStream outputStream = StreamFactory.getOutputStream(location, path, append);
 
@@ -262,8 +262,8 @@ public class Sphinx3Saver implements Saver {
         Properties props = new Properties();
         int checkSum = 0;
 
-        logger.info("Saving density file to: ");
-        logger.info(path);
+        logger.debug("Saving density file to: ");
+        logger.debug(path);
 
         props.setProperty("version", DENSITY_FILE_VERSION);
         props.setProperty("chksum0", checksum);
@@ -418,8 +418,8 @@ public class Sphinx3Saver implements Saver {
      */
     private void saveHMMPool(boolean useCDUnits, OutputStream outputStream, String path)
             throws FileNotFoundException, IOException {
-        logger.info("Saving HMM file to: ");
-        logger.info(path);
+        logger.debug("Saving HMM file to: ");
+        logger.debug(path);
 
         if (outputStream == null) {
             throw new IOException("Error trying to write file "
@@ -494,8 +494,8 @@ public class Sphinx3Saver implements Saver {
             }
             pw.println("N");
 
-            if (logger.isLoggable(Level.FINE)) {
-                logger.fine("Saved " + unit);
+            if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                logger.warn("Saved " + unit);
             }
 
         }
@@ -538,8 +538,8 @@ public class Sphinx3Saver implements Saver {
             }
             pw.println("N");
 
-            if (logger.isLoggable(Level.FINE)) {
-                logger.fine("Saved " + unit);
+            if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                logger.warn("Saved " + unit);
             }
 
         }
@@ -559,8 +559,8 @@ public class Sphinx3Saver implements Saver {
      */
     private void saveMixtureWeightsAscii(GaussianWeights mixtureWeights, String path, boolean append)
             throws FileNotFoundException, IOException {
-        logger.info("Saving mixture weights to: ");
-        logger.info(path);
+        logger.debug("Saving mixture weights to: ");
+        logger.debug(path);
 
         OutputStream outputStream = StreamFactory.getOutputStream(location, path, append);
         if (outputStream == null) {
@@ -608,8 +608,8 @@ public class Sphinx3Saver implements Saver {
      */
     private void saveMixtureWeightsBinary(GaussianWeights mixtureWeights, String path, boolean append)
             throws FileNotFoundException, IOException {
-        logger.info("Saving mixture weights to: ");
-        logger.info(path);
+        logger.debug("Saving mixture weights to: ");
+        logger.debug(path);
 
         Properties props = new Properties();
 
@@ -668,8 +668,8 @@ public class Sphinx3Saver implements Saver {
         }
         PrintWriter pw = new PrintWriter(outputStream, true);
 
-        logger.info("Saving transition matrices to: ");
-        logger.info(path);
+        logger.debug("Saving transition matrices to: ");
+        logger.debug(path);
         int numMatrices = pool.size();
 
         assert numMatrices > 0;
@@ -708,8 +708,8 @@ public class Sphinx3Saver implements Saver {
 
                     }
 
-                    if (logger.isLoggable(Level.FINE)) {
-                        logger.fine("tmat j " + j + " k "
+                    if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                        logger.warn("tmat j " + j + " k "
                                 + k + " tm " + tmat[j][k]);
                     }
                 }
@@ -729,8 +729,8 @@ public class Sphinx3Saver implements Saver {
     protected void saveTransitionMatricesBinary(Pool<float[][]> pool, String path, boolean append)
             throws IOException {
 
-        logger.info("Saving transition matrices to: ");
-        logger.info(path);
+        logger.debug("Saving transition matrices to: ");
+        logger.debug(path);
         Properties props = new Properties();
 
         props.setProperty("version", TMAT_FILE_VERSION);
@@ -819,7 +819,7 @@ public class Sphinx3Saver implements Saver {
     }
 
     public void logInfo() {
-        logger.info("Sphinx3Saver");
+        logger.debug("Sphinx3Saver");
         meansPool.logInfo(logger);
         variancePool.logInfo(logger);
         matrixPool.logInfo(logger);
@@ -830,7 +830,7 @@ public class Sphinx3Saver implements Saver {
         varianceTransformationVectorPool.logInfo(logger);
         mixtureWeights.logInfo(logger);
         senonePool.logInfo(logger);
-        logger.info("Context Independent Unit Entries: " + contextIndependentUnits.size());
+        logger.debug("Context Independent Unit Entries: " + contextIndependentUnits.size());
         hmmManager.logInfo(logger);
     }
 }

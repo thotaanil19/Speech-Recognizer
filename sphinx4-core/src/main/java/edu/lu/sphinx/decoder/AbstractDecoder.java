@@ -17,7 +17,7 @@ import edu.lu.sphinx.util.props.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** An abstract decoder which implements all functionality which is independent of the used decoding-paradigm (pull/push). */
 public abstract class AbstractDecoder implements ResultProducer, Configurable {
@@ -142,7 +142,7 @@ public abstract class AbstractDecoder implements ResultProducer, Configurable {
                 resultListener.newResult(result);
             }
         }else {
-            logger.finer("skipping non-final result " + result);
+            logger.debug("skipping non-final result " + result);
         }
     }
 

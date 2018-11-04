@@ -33,7 +33,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * an acoustic model loader that initializes models
@@ -123,10 +123,10 @@ public class ModelInitializerLoader implements Loader {
         String phone = ps.getString(PHONE_LIST);
         String dataDir = ps.getString(DATA_DIR);
 
-        logger.info("Creating Sphinx3 acoustic model: " + modelName);
-        logger.info("    Path      : " + location);
-        logger.info("    phonelist : " + phone);
-        logger.info("    dataDir   : " + dataDir);
+        logger.debug("Creating Sphinx3 acoustic model: " + modelName);
+        logger.debug("    Path      : " + location);
+        logger.debug("    phonelist : " + phone);
+        logger.debug("    dataDir   : " + dataDir);
 
         // load the HMM model file
         boolean useCDUnits = ps.getBoolean(PROP_USE_CD_UNITS);
@@ -186,11 +186,11 @@ public class ModelInitializerLoader implements Loader {
       int numSenones = mixtureWeightsPool.getFeature(NUM_SENONES, 0);
       int whichGaussian = 0;
 
-      logger.fine("NG " + numGaussiansPerSenone);
-      logger.fine("NS " + numSenones);
-      logger.fine("NMIX " + numMixtureWeights);
-      logger.fine("NMNS " + numMeans);
-      logger.fine("NMNS " + numVariances);
+      logger.warn("NG " + numGaussiansPerSenone);
+      logger.warn("NS " + numSenones);
+      logger.warn("NMIX " + numMixtureWeights);
+      logger.warn("NMNS " + numMeans);
+      logger.warn("NMNS " + numVariances);
 
       assert numMixtureWeights == numSenones;
       assert numVariances == numSenones * numGaussiansPerSenone;
@@ -328,8 +328,8 @@ public class ModelInitializerLoader implements Loader {
         float transitionProbabilityFloor = 0;
         float varianceFloor = ps.getFloat(PROP_VARIANCE_FLOOR);
 
-        logger.info("Loading phone list file from: ");
-        logger.info(path);
+        logger.debug("Loading phone list file from: ");
+        logger.debug(path);
 
         // At this point, we only accept version 0.1
         String version = "0.1";
@@ -364,7 +364,7 @@ public class ModelInitializerLoader implements Loader {
                 size = est.getInt("ModelSize");
             }
             phoneList.put(phone, size);
-            logger.fine("Phone: " + phone + " size: " + size);
+            logger.warn("Phone: " + phone + " size: " + size);
             int[] stid = new int[size];
             String position = "-";
 
@@ -376,8 +376,8 @@ public class ModelInitializerLoader implements Loader {
 
             contextIndependentUnits.put(unit.getName(), unit);
 
-            if (logger.isLoggable(Level.FINE)) {
-                logger.fine("Loaded " + unit + " with " + size + " states");
+            if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                logger.warn("Loaded " + unit + " with " + size + " states");
             }
 
             // Means
@@ -519,7 +519,7 @@ public class ModelInitializerLoader implements Loader {
     private Pool<float[][]> createDummyMatrixPool(String name) {
         Pool<float[][]> pool = new Pool<float[][]>(name);
         float[][] matrix = new float[vectorLength][vectorLength];
-        logger.info("creating dummy matrix pool " + name);
+        logger.debug("creating dummy matrix pool " + name);
         for (int i = 0; i < vectorLength; i++) {
             for (int j = 0; j < vectorLength; j++) {
                 if (i == j) {
@@ -541,7 +541,7 @@ public class ModelInitializerLoader implements Loader {
      * @return the pool with the vector
      */
     private Pool<float[]> createDummyVectorPool(String name) {
-        logger.info("creating dummy vector pool " + name);
+        logger.debug("creating dummy vector pool " + name);
         Pool<float[]> pool = new Pool<float[]>(name);
         float[] vector = new float[vectorLength];
         for (int i = 0; i < vectorLength; i++) {
@@ -607,7 +607,7 @@ public class ModelInitializerLoader implements Loader {
     }
 
     public void logInfo() {
-        logger.info("Sphinx3Loader");
+        logger.debug("Sphinx3Loader");
         meansPool.logInfo(logger);
         variancePool.logInfo(logger);
         matrixPool.logInfo(logger);
@@ -618,7 +618,7 @@ public class ModelInitializerLoader implements Loader {
         varianceTransformationVectorPool.logInfo(logger);
         mixtureWeights.logInfo(logger);
         senonePool.logInfo(logger);
-        logger.info("Context Independent Unit Entries: " + contextIndependentUnits.size());
+        logger.debug("Context Independent Unit Entries: " + contextIndependentUnits.size());
         hmmManager.logInfo(logger);
     }
 

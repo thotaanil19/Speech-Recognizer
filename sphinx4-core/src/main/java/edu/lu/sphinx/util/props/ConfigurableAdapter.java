@@ -1,6 +1,8 @@
 package edu.lu.sphinx.util.props;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+
+//import org.apache.log4j.Logger;
 
 /**
  * An default (abstract) implementation of a configurable that implements a meaning {@code toString()} and keeps a

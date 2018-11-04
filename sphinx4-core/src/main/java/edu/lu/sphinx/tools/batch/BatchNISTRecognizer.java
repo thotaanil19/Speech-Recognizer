@@ -15,7 +15,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Copyright 1999-2002 Carnegie Mellon University. Portions Copyright 2002 Sun Microsystems, Inc. Portions Copyright
@@ -128,7 +128,7 @@ public class BatchNISTRecognizer extends BatchModeRecognizer {
 
         this.bytesPerFrame = ((bitsPerSample / 8) * channelCount * samplesPerSecond) / framesPerSecond;
 
-        logger.info(
+        logger.debug(
                 "BatchNISTRecognizer:\n" +
                         "  dataDirectory=" + dataDir + '\n' +
                         "  ctlFile=" + ctlFile + '\n' +
@@ -164,7 +164,7 @@ public class BatchNISTRecognizer extends BatchModeRecognizer {
 
         bytesPerFrame = ((bitsPerSample / 8) * channelCount * samplesPerSecond) / framesPerSecond;
 
-        logger.info(
+        logger.debug(
                 "BatchNISTRecognizer:\n" +
                         "  dataDirectory=" + dataDir + '\n' +
                         "  ctlFile=" + ctlFile + '\n' +
@@ -333,17 +333,17 @@ public class BatchNISTRecognizer extends BatchModeRecognizer {
                 System.out.println("Utterance " + utteranceId + ": " + utt.getName());
                 System.out.println("Reference: " + utt.getRef());
                 System.out.println("Result   : " + result);
-                logger.info("Utterance " + utteranceId + ": " + utt.getName());
-                logger.info("Result   : " + result);
+                logger.debug("Utterance " + utteranceId + ": " + utt.getName());
+                logger.debug("Result   : " + result);
                 handleResult(ctm, utt, result);
                 utteranceId++;
             }
 
             recognizer.deallocate();
         } catch (IOException io) {
-            logger.severe("I/O error during decoding: " + io.getMessage());
+            logger.warn("I/O error during decoding: " + io.getMessage());
         }
-        logger.info("BatchCTLDecoder: " + utteranceId + " utterances decoded");
+        logger.debug("BatchCTLDecoder: " + utteranceId + " utterances decoded");
     }
 
 

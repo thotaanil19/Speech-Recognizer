@@ -15,7 +15,7 @@ package edu.lu.sphinx.linguist.lextree;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import edu.lu.sphinx.decoder.scorer.ScoreProvider;
 import edu.lu.sphinx.frontend.Data;

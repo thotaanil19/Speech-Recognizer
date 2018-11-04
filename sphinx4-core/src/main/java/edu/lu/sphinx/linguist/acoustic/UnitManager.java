@@ -18,7 +18,7 @@ import edu.lu.sphinx.util.props.PropertySheet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** Manages the set of units for a recognizer */
 public class UnitManager implements Configurable {
@@ -60,8 +60,8 @@ public class UnitManager implements Configurable {
             if (unit == null) {
                 unit = new Unit(name, filler, nextID++);
                 ciMap.put(name, unit);
-                if (logger != null && logger.isLoggable(Level.INFO)) {
-                    logger.info("CI Unit: " + unit);
+                if (logger != null) {
+                    logger.debug("CI Unit: " + unit);
                 }
             }
         } else {

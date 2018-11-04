@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.TreeMap;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import edu.lu.sphinx.alignment.LongTextAligner;
 import edu.lu.sphinx.alignment.SimpleTokenizer;
@@ -105,7 +105,7 @@ public class SpeechAligner {
                 Range range = ranges.poll();
 
 
-                logger.info("Aligning frame " + frame + " to text " + text + " range " + range);
+                logger.debug("Aligning frame " + frame + " to text " + text + " range " + range);
 
                 recognizer.allocate();
 
@@ -118,7 +118,7 @@ public class SpeechAligner {
                 List<WordResult> hypothesis = new ArrayList<WordResult>();
                 Result result;
                 while (null != (result = recognizer.recognize())) {
-                    logger.info("Utterance result " + result.getTimedBestResult(true));
+                    logger.debug("Utterance result " + result.getTimedBestResult(true));
                     hypothesis.addAll(result.getTimedBestResult(false));
                 }
 
@@ -136,7 +136,7 @@ public class SpeechAligner {
 
                 List<WordResult> results = hypothesis;
 
-                logger.info("Decoding result is " + results);
+                logger.debug("Decoding result is " + results);
 
                 // dumpAlignment(transcript, alignment, results);
                 dumpAlignmentStats(transcript, alignment, results);
@@ -189,7 +189,7 @@ public class SpeechAligner {
         if (lastId >= 0 && transcript.size() - lastId > 1) {
             deletions += transcript.size() - lastId;
         }
-        logger.info(String.format("Size %d deletions %d insertions %d error rate %.2f", size, insertions, deletions,
+        logger.debug(String.format("Size %d deletions %d insertions %d error rate %.2f", size, insertions, deletions,
                 (insertions + deletions) / ((float) size) * 100f));
     }
 
@@ -211,19 +211,19 @@ public class SpeechAligner {
     }
 
     public void dumpAlignment(List<String> transcript, int[] alignment, List<WordResult> results) {
-        logger.info("Alignment");
+        logger.debug("Alignment");
         int[] aid = alignment;
         int lastId = -1;
         for (int ij = 0; ij < aid.length; ++ij) {
             if (aid[ij] == -1) {
-                logger.info(String.format("+ %s", results.get(ij)));
+                logger.debug(String.format("+ %s", results.get(ij)));
             } else {
                 if (aid[ij] - lastId > 1) {
                     for (String result1 : transcript.subList(lastId + 1, aid[ij])) {
-                        logger.info(String.format("- %-25s", result1));
+                        logger.debug(String.format("- %-25s", result1));
                     }
                 } else {
-                    logger.info(String.format("  %-25s", transcript.get(aid[ij])));
+                    logger.debug(String.format("  %-25s", transcript.get(aid[ij])));
                 }
                 lastId = aid[ij];
             }
@@ -231,7 +231,7 @@ public class SpeechAligner {
 
         if (lastId >= 0 && transcript.size() - lastId > 1) {
             for (String result1 : transcript.subList(lastId + 1, transcript.size())) {
-                logger.info(String.format("- %-25s", result1));
+                logger.debug(String.format("- %-25s", result1));
             }
         }
     }
@@ -244,7 +244,7 @@ public class SpeechAligner {
         // Skip range if it's too short, average word is less than 10
         // milliseconds
         if (wordDensity < 10.0 && (end - start) > 3) {
-            logger.info("Skipping text range due to a high density " + transcript.subList(start, end).toString());
+            logger.debug("Skipping text range due to a high density " + transcript.subList(start, end).toString());
             return;
         }
 

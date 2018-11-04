@@ -13,14 +13,15 @@
 
 package edu.lu.sphinx.frontend.endpoint;
 
-import edu.lu.sphinx.frontend.*;
+import edu.lu.sphinx.frontend.Data;
+import edu.lu.sphinx.frontend.DataProcessingException;
+import edu.lu.sphinx.frontend.DataStartSignal;
+import edu.lu.sphinx.frontend.DoubleData;
 import edu.lu.sphinx.util.LogMath;
 import edu.lu.sphinx.util.props.PropertyException;
 import edu.lu.sphinx.util.props.PropertySheet;
 import edu.lu.sphinx.util.props.S4Double;
 import edu.lu.sphinx.util.props.S4Integer;
-
-import java.util.logging.Level;
 
 /**
  * Implements a level tracking endpointer invented by Bent Schmidt Nielsen.
@@ -170,14 +171,14 @@ public class SpeechClassifier extends AbstractVoiceActivityDetector {
 
         SpeechClassifiedData labeledAudio = new SpeechClassifiedData(audio, isSpeech);
 
-        if (logger.isLoggable(Level.FINEST)) {
+       /* if (logger.isLoggable(Level.FINEST)) {
             String speech = "";
             if (labeledAudio.isSpeech())
                 speech = "*";
 
-            logger.finest("Bkg: " + background + ", level: " + level +
+            logger.warnst("Bkg: " + background + ", level: " + level +
                     ", current: " + current + ' ' + speech);
-        }
+        }*/
 
         collectStats (isSpeech);
         
@@ -248,9 +249,9 @@ public class SpeechClassifier extends AbstractVoiceActivityDetector {
      */
     public double getSNR () {
         double snr = (totalSpeechLevel / speechFrames) - (totalBackgroundLevel / backgroundFrames);
-        logger.fine ("Background " + totalBackgroundLevel / backgroundFrames);
-        logger.fine ("Speech " + totalSpeechLevel / speechFrames);
-        logger.fine ("SNR is " + snr);
+        logger.debug ("Background " + totalBackgroundLevel / backgroundFrames);
+        logger.debug ("Speech " + totalSpeechLevel / speechFrames);
+        logger.debug ("SNR is " + snr);
         return snr;
     }
  

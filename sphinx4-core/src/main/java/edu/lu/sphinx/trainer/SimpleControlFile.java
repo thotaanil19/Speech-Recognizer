@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** Provides mechanisms for accessing a next utterance's file name and transcription. */
 public class SimpleControlFile implements ControlFile {
@@ -63,10 +63,10 @@ public class SimpleControlFile implements ControlFile {
         this.numberOfPartitions = ps.getInt(PROP_TOTAL_BATCHES);
        
 
-        logger.info("Audio control file: " + this.audioFile);
-        logger.info("Transcript file: " + this.transcriptFile);
+        logger.debug("Audio control file: " + this.audioFile);
+        logger.debug("Transcript file: " + this.transcriptFile);
         this.wordSeparator = " \t\n\r\f"; // the white spaces
-        logger.info("Processing part " + this.currentPartition +
+        logger.debug("Processing part " + this.currentPartition +
                 " of " + this.numberOfPartitions);
         try {
             this.audioFileList = getLines(audioFile);
@@ -107,7 +107,7 @@ public class SimpleControlFile implements ControlFile {
      * @return the next utterance.
      */
     public Utterance nextUtterance() {
-        logger.fine("processing ext utterance");
+        logger.warn("processing ext utterance");
         
         String utteranceLine = audioFileIterator.next()  + ".mfc";
         Utterance utterance = new SimpleUtterance(utteranceLine);

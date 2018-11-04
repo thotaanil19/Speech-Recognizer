@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.EnumMap;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -64,7 +64,7 @@ public class HMMPool {
         // count CI units:
         for (Iterator<Unit> i = model.getContextIndependentUnitIterator(); i.hasNext();) {
             Unit unit = i.next();
-            logger.fine("CI unit " + unit);
+            logger.warn("CI unit " + unit);
             if (unit.getBaseID() > maxCIUnits) {
                 maxCIUnits = unit.getBaseID();
             }
@@ -79,9 +79,7 @@ public class HMMPool {
             Unit unit = hmm.getUnit();
             int id = getID(unit);
             unitTable[id] = unit;
-            if (logger.isLoggable(Level.FINER)) {
-                logger.finer("Unit " + unit + " id " + id);
-            }
+                logger.warn("Unit " + unit + " id " + id);
         }
 
         // build up the hmm table to allow quick access to the hmms
@@ -141,10 +139,8 @@ public class HMMPool {
                 centralUnit.getName(), centralUnit.isFiller(),
                 context);
 
-        if (logger.isLoggable(Level.FINER)) {
-            logger.finer("Missing " + getUnitNameFromID(id)
+            logger.warn("Missing " + getUnitNameFromID(id)
                     + " returning " + unit);
-        }
         return unit;
     }
 
@@ -327,26 +323,26 @@ public class HMMPool {
         int rid = getID(rc);
 
         if (!isValidID(bid)) {
-            logger.severe("Bad HMM Unit: " + base.getName());
+            logger.warn("Bad HMM Unit: " + base.getName());
             return null;
         }
         if (!isValidID(lid)) {
-            logger.severe("Bad HMM Unit: " + lc.getName());
+            logger.warn("Bad HMM Unit: " + lc.getName());
             return null;
         }
         if (!isValidID(rid)) {
-            logger.severe("Bad HMM Unit: " + rc.getName());
+            logger.warn("Bad HMM Unit: " + rc.getName());
             return null;
         }
         id = buildID(bid, lid, rid);
         if (id < 0) {
-            logger.severe("Unable to build HMM Unit ID for " + base.getName()
+            logger.warn("Unable to build HMM Unit ID for " + base.getName()
                     + " lc=" + lc.getName() + " rc=" + rc.getName());
             return null;
         }
         HMM hmm = getHMM(id, pos);
         if (hmm == null) {
-            logger.severe("Missing HMM Unit for " + base.getName() + " lc="
+            logger.warn("Missing HMM Unit for " + base.getName() + " lc="
                     + lc.getName() + " rc=" + rc.getName());
         }
 
@@ -357,14 +353,12 @@ public class HMMPool {
 
     /** Dumps out info about this pool */
     public void dumpInfo() {
-        logger.info("Max CI Units " + numCIUnits);
-        logger.info("Unit table size " + unitTable.length);
+        logger.debug("Max CI Units " + numCIUnits);
+        logger.debug("Unit table size " + unitTable.length);
 
-        if (logger.isLoggable(Level.FINER)) {
             for (int i = 0; i < unitTable.length; i++) {
-                logger.finer(String.valueOf(i) + ' ' + unitTable[i]);
+                logger.warn(String.valueOf(i) + ' ' + unitTable[i]);
             }
-        }
     }
 
 

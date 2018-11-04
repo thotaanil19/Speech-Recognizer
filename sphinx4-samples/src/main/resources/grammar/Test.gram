@@ -1,0 +1,15 @@
+grammar Test;
+
+
+import <wish.start>;
+import <wish.end>;
+
+ 
+
+public <word> = class | friend | computer | system | good | bad | open | close | browser | music | start;
+public <numbers> = one | two | three | four | five | six | seven | eight | nine | ten;
+public <question> = how are you | are you doing fine | how are you studying;
+public <computer> = start computer | start system | power on system | power on computer | power off computer | shutdown system | power off system | close system;
+
+public <command> = <wish.start> | <word> | <wish.end>;
+

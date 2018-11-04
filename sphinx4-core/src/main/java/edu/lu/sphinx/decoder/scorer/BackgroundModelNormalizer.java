@@ -7,7 +7,7 @@ import edu.lu.sphinx.util.props.PropertySheet;
 import edu.lu.sphinx.util.props.S4Component;
 
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Normalizes a set of Tokens against the best scoring Token of a background model.
@@ -33,7 +33,7 @@ public class BackgroundModelNormalizer implements ScoreNormalizer {
         this.activeListProvider = (SimpleBreadthFirstSearchManager) ps.getComponent(ACTIVE_LIST_PROVIDER);
         this.logger = ps.getLogger();
 
-        logger.warning("no active list set.");
+        logger.warn("no active list set.");
     }
 
     /**
@@ -44,7 +44,7 @@ public class BackgroundModelNormalizer implements ScoreNormalizer {
         this.activeListProvider = activeListProvider;
         this.logger = Logger.getLogger(getClass().getName());
 
-        logger.warning("no active list set.");
+        logger.warn("no active list set.");
     }
     
     public Scoreable normalize(List<? extends Scoreable> scoreableList, Scoreable bestToken) {

@@ -17,7 +17,7 @@ import edu.lu.sphinx.linguist.dictionary.Dictionary;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** Provides mechanism for handling a simple utterance. */
 public class SimpleUtterance implements Utterance {
@@ -45,7 +45,7 @@ public class SimpleUtterance implements Utterance {
      * @param utteranceID the utterance ID, usually a file name.
      */
     public SimpleUtterance(String utteranceID) {
-        logger.info("Utterance ID: " + utteranceID);
+        logger.debug("Utterance ID: " + utteranceID);
         this.utteranceID = utteranceID;
         this.transcriptSet = new LinkedList<SimpleTranscript>();
     }
@@ -61,7 +61,7 @@ public class SimpleUtterance implements Utterance {
      */
     public void add(String transcript, Dictionary dictionary,
                     boolean isExact, String wordSeparator) {
-        logger.info("Transcript: " + transcript);
+        logger.debug("Transcript: " + transcript);
         transcriptSet.add(new SimpleTranscript(transcript, dictionary,
                 isExact, wordSeparator));
     }

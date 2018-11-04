@@ -168,7 +168,7 @@ public class SpeedTracker
 
     /** Shows the audio usage data */
     protected void showAudioUsage() {
-        logger.info("   This  Time Audio: " + timeFormat.format(audioTime)
+        logger.debug("   This  Time Audio: " + timeFormat.format(audioTime)
                 + "s"
                 + "  Proc: " + timeFormat.format(processingTime) + "s"
                 + "  Speed: " + timeFormat.format(getSpeed())
@@ -179,7 +179,7 @@ public class SpeedTracker
 
     /** Shows the audio summary data */
     protected void showAudioSummary() {
-        logger.info("   Total Time Audio: "
+        logger.debug("   Total Time Audio: "
                 + timeFormat.format(totalAudioTime) + "s"
                 + "  Proc: " + timeFormat.format(totalProcessingTime)
                 + "s "
@@ -188,7 +188,7 @@ public class SpeedTracker
         if (showResponseTime) {
             float avgResponseTime =
                     (float) totalResponseTime / (numUtteranceStart * 1000);
-            logger.info
+            logger.debug
                     ("   Response Time:  Avg: " + avgResponseTime + 's' +
                             "  Max: " + ((float) maxResponseTime / 1000) +
                             "s  Min: " + ((float) minResponseTime / 1000) + 's');

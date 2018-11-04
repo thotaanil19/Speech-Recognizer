@@ -13,7 +13,7 @@ package edu.lu.sphinx.alignment.tokenizer;
 import java.io.*;
 import java.net.URL;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import java.util.regex.Pattern;
 
 
@@ -313,7 +313,7 @@ public class DecisionTree {
             decision = (DecisionNode) cart[nodeIndex];
             nodeIndex = decision.getNextNode(item);
         }
-        logger.fine("LEAF " + cart[nodeIndex].getValue());
+        logger.debug("LEAF " + cart[nodeIndex].getValue());
         return ((LeafNode) cart[nodeIndex]).getValue();
     }
 
@@ -523,7 +523,7 @@ public class DecisionTree {
             } else {
                 ret = qfalse;
             }
-            logger.fine(trace(val, yes, ret));
+            logger.debug(trace(val, yes, ret));
             return ret;
         }
 

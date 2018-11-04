@@ -25,7 +25,7 @@ import edu.lu.sphinx.util.LogMath;
 import edu.lu.sphinx.util.Utilities;
 
 import java.util.*;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 
 /** Represents a node in the HMM Tree */
@@ -901,7 +901,7 @@ class HMMTree {
                 rc = units[i + 1];
                 HMM hmm = hmmPool.getHMM(baseUnit, lc, rc, HMMPosition.INTERNAL);
                 if (hmm == null) {
-                    logger.severe("Missing HMM for unit " + baseUnit.getName() + " with lc=" + lc.getName() + " rc=" + rc.getName());
+                    logger.warn("Missing HMM for unit " + baseUnit.getName() + " with lc=" + lc.getName() + " rc=" + rc.getName());
                 } else {
                     curNode = curNode.addSuccessor(hmm, probability);
                 }

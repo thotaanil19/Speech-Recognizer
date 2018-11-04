@@ -14,7 +14,7 @@ package edu.lu.sphinx.linguist.acoustic.tiedstate;
 
 
 import java.util.*;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** Used to pool shared objects in the acoustic model */
 public class Pool<T> {
@@ -94,7 +94,7 @@ public class Pool<T> {
      * @param logger the logger to send the info to
      */
     public void logInfo(Logger logger) {
-        logger.info("Pool " + name + " Entries: " + size());
+        logger.debug("Pool " + name + " Entries: " + size());
     }
 
     /**

@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * This program takes in an audio file, does frontend signal processing to it,
@@ -82,7 +82,7 @@ public class FeatureFileDumper {
         audioSource .setInputStream(new FileInputStream(inputAudioFile));
         allFeatures = new LinkedList<float[]>();
         getAllFeatures();
-        logger.info("Frames: " + allFeatures.size());
+        logger.debug("Frames: " + allFeatures.size());
     }
 
     /**
@@ -101,7 +101,7 @@ public class FeatureFileDumper {
                     double[] featureData = ((DoubleData) feature).getValues();
                     if (featureLength < 0) {
                         featureLength = featureData.length;
-                        logger.info("Feature length: " + featureLength);
+                        logger.debug("Feature length: " + featureLength);
                     }
                     float[] convertedData = new float[featureData.length];
                     for (int i = 0; i < featureData.length; i++) {
@@ -112,7 +112,7 @@ public class FeatureFileDumper {
                     float[] featureData = ((FloatData) feature).getValues();
                     if (featureLength < 0) {
                         featureLength = featureData.length;
-                        logger.info("Feature length: " + featureLength);
+                        logger.debug("Feature length: " + featureLength);
                     }
                     allFeatures.add(featureData);
                 }
@@ -216,9 +216,9 @@ public class FeatureFileDumper {
             System.exit(1);
         }
 
-        logger.info("Input file: " + inputFile);
-        logger.info("Output file: " + outputFile);
-        logger.info("Format: " + format);
+        logger.debug("Input file: " + inputFile);
+        logger.debug("Output file: " + outputFile);
+        logger.debug("Format: " + format);
 
         try {
             URL url;

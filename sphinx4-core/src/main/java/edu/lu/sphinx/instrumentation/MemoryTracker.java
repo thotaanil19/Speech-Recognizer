@@ -120,9 +120,9 @@ public class MemoryTracker
                 / numMemoryStats;
 
         if (show) {
-            logger.info("   Mem  Total: " + memFormat.format(totalMem)
+            logger.debug("   Mem  Total: " + memFormat.format(totalMem)
                     + "  " + "Free: " + memFormat.format(freeMem));
-            logger.info("   Used: This: " + memFormat.format(usedMem) + "  "
+            logger.debug("   Used: This: " + memFormat.format(usedMem) + "  "
                     + "Avg: " + memFormat.format(avgMemoryUsed) + "  " + "Max: "
                     + memFormat.format(maxMemoryUsed));
         }

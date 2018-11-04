@@ -10,7 +10,7 @@
 
 package edu.lu.sphinx.linguist.acoustic.tiedstate;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** Structure to store weights for all gaussians in AM. 
  * Supposed to provide faster access in case of large models */
@@ -57,7 +57,7 @@ public class GaussianWeights {
     }
     
     public void logInfo(Logger logger) {
-        logger.info("Gaussian weights: " + name + ". Entries: " + numStates * numStreams);
+        logger.debug("Gaussian weights: " + name + ". Entries: " + numStates * numStreams);
     }
     
     public Pool<float[]> convertToPool() {

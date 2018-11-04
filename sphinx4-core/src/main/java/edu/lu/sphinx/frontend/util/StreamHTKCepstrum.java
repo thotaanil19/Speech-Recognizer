@@ -129,10 +129,10 @@ public class StreamHTKCepstrum extends BaseDataProcessor {
                 cepstrumLength = sampSize / 4;
                 numPoints *= cepstrumLength;
 
-                logger.info("Sample period is " + sampPeriod);
-                logger.info("Sample size " + sampSize);
-                logger.info("Parameter kind " + parmKind);
-                logger.info("BigEndian");
+                logger.debug("Sample period is " + sampPeriod);
+                logger.debug("Sample size " + sampSize);
+                logger.debug("Parameter kind " + parmKind);
+                logger.debug("BigEndian");
             } else {
                 numPoints = Utilities.readLittleEndianInt(binaryStream);
 
@@ -143,10 +143,10 @@ public class StreamHTKCepstrum extends BaseDataProcessor {
                 cepstrumLength = sampSize/4;
                 numPoints *= cepstrumLength;
 
-                logger.info("Sample period is " + sampPeriod);
-                logger.info("Sample size " + sampSize);
-                logger.info("Parameter kind " + parmKind);
-                logger.info("LittleEndian");
+                logger.debug("Sample period is " + sampPeriod);
+                logger.debug("Sample size " + sampSize);
+                logger.debug("Parameter kind " + parmKind);
+                logger.debug("LittleEndian");
             }
             System.out.println("Frames: " + numPoints / cepstrumLength);
         }

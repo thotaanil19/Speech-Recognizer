@@ -184,7 +184,7 @@ public class ConcatAudioFileDataSource extends AudioFileDataSource implements
                     }
 
                     stream = ais;
-                    logger.finer("Strating processing of '"
+                    logger.debug("Strating processing of '"
                             + lastFile.getFile() + '\'');
                     for (AudioFileProcessListener fl : fileListeners)
                         fl.audioFileProcStarted(new File(nextFile.getFile()));
@@ -210,7 +210,7 @@ public class ConcatAudioFileDataSource extends AudioFileDataSource implements
          */
         public URL readNext() {
             if (lastFile != null) {
-                logger.finest("Finished processing of '" + lastFile.getFile()
+                logger.debug("Finished processing of '" + lastFile.getFile()
                         + '\'');
                 for (AudioFileProcessListener fl : fileListeners)
                     fl.audioFileProcFinished(new File(lastFile.getFile()));

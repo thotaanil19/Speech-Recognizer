@@ -146,11 +146,11 @@ public class ThreadedAcousticScorer extends SimpleAcousticScorer {
         super.allocate();
         if (executorService == null) {
             if (numThreads > 1) {
-                logger.fine("# of scoring threads: " + numThreads);
+                logger.warn("# of scoring threads: " + numThreads);
                 executorService = Executors.newFixedThreadPool(numThreads,
                     new CustomThreadFactory(className, true, threadPriority));
             } else {
-                logger.fine("no scoring threads");
+                logger.warn("no scoring threads");
             }
         }
     }

@@ -53,7 +53,7 @@ public class AlignerGrammar extends Grammar {
     @Override
     protected GrammarNode createGrammar() {
 
-        logger.info("Making Grammar");
+        logger.debug("Making Grammar");
 
         initialNode = createGrammarNode(Dictionary.SILENCE_SPELLING);
         finalNode = createGrammarNode(true);
@@ -71,7 +71,7 @@ public class AlignerGrammar extends Grammar {
         }
         prevNode.add(finalNode, LogMath.LOG_ONE);
 
-        logger.info("Done making Grammar");
+        logger.debug("Done making Grammar");
         return initialNode;
     }
 

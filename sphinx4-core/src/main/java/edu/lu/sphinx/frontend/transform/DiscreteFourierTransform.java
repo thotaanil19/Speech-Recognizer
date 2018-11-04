@@ -289,7 +289,7 @@ public class DiscreteFourierTransform extends BaseDataProcessor {
                     numberDataPoints = data.getValues().length;
                     int idealFftPoints = getNumberFftPoints(numberDataPoints);
                     if (idealFftPoints != numberFftPoints) {
-                        logger.warning("User set numberFftPoints (" +
+                        logger.warn("User set numberFftPoints (" +
                                 numberFftPoints + ") is not ideal (" +
                                 idealFftPoints + ')');
                     }

@@ -4,6 +4,7 @@ description = 'Sphinx4 demo applications'
 dependencies {
     compile project(':sphinx4-core')
     compile project(':sphinx4-data')
+   // compile group: 'net.sf.sociaal', name: 'freetts', version: '1.2.2'
 }
 
 jar {

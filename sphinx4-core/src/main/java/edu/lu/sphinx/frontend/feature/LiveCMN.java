@@ -221,7 +221,7 @@ public class LiveCMN extends BaseDataProcessor {
                 cmn.append (formatter.format(currentMean[i]));
                 cmn.append(' ');
             }
-            logger.info(cmn.toString());
+            logger.debug(cmn.toString());
             
             updateMeanSumBuffers();
         }

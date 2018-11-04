@@ -18,11 +18,17 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import edu.lu.sphinx.jsgf.parser.JSGFParser;
-import edu.lu.sphinx.jsgf.rule.*;
+import edu.lu.sphinx.jsgf.rule.JSGFRule;
+import edu.lu.sphinx.jsgf.rule.JSGFRuleAlternatives;
+import edu.lu.sphinx.jsgf.rule.JSGFRuleCount;
+import edu.lu.sphinx.jsgf.rule.JSGFRuleName;
+import edu.lu.sphinx.jsgf.rule.JSGFRuleSequence;
+import edu.lu.sphinx.jsgf.rule.JSGFRuleTag;
+import edu.lu.sphinx.jsgf.rule.JSGFRuleToken;
 import edu.lu.sphinx.linguist.dictionary.Dictionary;
 import edu.lu.sphinx.linguist.language.grammar.Grammar;
 import edu.lu.sphinx.linguist.language.grammar.GrammarNode;
@@ -326,7 +332,7 @@ public class JSGFGrammar extends Grammar {
         GrammarGraph result;
 
         if (rule != null) {
-            logger.fine("parseRule: " + rule);
+            logger.warn("parseRule: " + rule);
         }
 
         if (rule instanceof JSGFRuleAlternatives) {
@@ -356,7 +362,7 @@ public class JSGFGrammar extends Grammar {
      */
     private GrammarGraph processRuleName(JSGFRuleName initialRuleName)
             throws JSGFGrammarException {
-        logger.fine("parseRuleName: " + initialRuleName);
+        logger.warn("parseRuleName: " + initialRuleName);
         GrammarGraph result = ruleStack.contains(initialRuleName.getRuleName());
 
         if (result != null) { // its a recursive call
@@ -408,7 +414,7 @@ public class JSGFGrammar extends Grammar {
      */
     private GrammarGraph processRuleCount(JSGFRuleCount ruleCount)
             throws JSGFGrammarException {
-        logger.fine("parseRuleCount: " + ruleCount);
+        logger.warn("parseRuleCount: " + ruleCount);
         GrammarGraph result = new GrammarGraph();
         int count = ruleCount.getCount();
         GrammarGraph newNodes = processRule(ruleCount.getRule());
@@ -441,7 +447,7 @@ public class JSGFGrammar extends Grammar {
      */
     private GrammarGraph processRuleAlternatives(
             JSGFRuleAlternatives ruleAlternatives) throws JSGFGrammarException {
-        logger.fine("parseRuleAlternatives: " + ruleAlternatives);
+        logger.warn("parseRuleAlternatives: " + ruleAlternatives);
         GrammarGraph result = new GrammarGraph();
 
         List<JSGFRule> rules = ruleAlternatives.getRules();
@@ -454,7 +460,7 @@ public class JSGFGrammar extends Grammar {
             if (weights != null) {
                 weight = weights.get(i);
             }
-            logger.fine("Alternative: " + rule);
+            logger.warn("Alternative: " + rule);
             GrammarGraph newNodes = processRule(rule);
             result.getStartNode().add(newNodes.getStartNode(), weight);
             newNodes.getEndNode().add(result.getEndNode(), 0.0f);
@@ -508,7 +514,7 @@ public class JSGFGrammar extends Grammar {
 
         GrammarNode startNode = null;
         GrammarNode endNode = null;
-        logger.fine("parseRuleSequence: " + ruleSequence);
+        logger.warn("parseRuleSequence: " + ruleSequence);
 
         List<JSGFRule> rules = ruleSequence.getRules();
 
@@ -547,7 +553,7 @@ public class JSGFGrammar extends Grammar {
      */
     private GrammarGraph processRuleTag(JSGFRuleTag ruleTag)
             throws JSGFGrammarException {
-        logger.fine("parseRuleTag: " + ruleTag);
+        logger.warn("parseRuleTag: " + ruleTag);
         JSGFRule rule = ruleTag.getRule();
         return processRule(rule);
     }
@@ -644,7 +650,7 @@ public class JSGFGrammar extends Grammar {
                 }
             }
             postProcessGrammar();
-            if (logger.isLoggable(Level.FINEST)) {
+            if (org.apache.log4j.Level.DEBUG.equals(logger.getLevel())) {
                 dumpGrammar();
             }
         } catch (MalformedURLException mue) {

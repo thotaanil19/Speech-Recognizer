@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * A component that knows how to map words to classes and vice versa.
@@ -124,8 +124,8 @@ public class ClassMap implements Configurable {
             String className = st.nextToken();
             float linearProb = Float.parseFloat(st.nextToken());
             String word = st.nextToken();
-            if (logger.isLoggable(Level.FINE)) {
-                logger.fine(word + " --> " + className + " " + linearProb);
+            if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                logger.warn(word + " --> " + className + " " + linearProb);
             }
             wordToClassProbabilities.put(word,
                     new ClassProbability(className, logMath.linearToLog(linearProb)));
@@ -134,7 +134,7 @@ public class ClassMap implements Configurable {
         }
         reader.close();
         checkClasses();
-        logger.info("Loaded word to class mappings for " + wordToClassProbabilities.size() + " words");
+        logger.debug("Loaded word to class mappings for " + wordToClassProbabilities.size() + " words");
     }
 
     /**
@@ -153,7 +153,7 @@ public class ClassMap implements Configurable {
 
         for (Map.Entry<String, Float> entry : sums.entrySet()) {
             if (Math.abs(1.0 - entry.getValue()) > 0.001) {
-                logger.warning("Word probabilities for class " + entry.getKey() + " sum to " + entry.getValue());
+                logger.warn("Word probabilities for class " + entry.getKey() + " sum to " + entry.getValue());
             }
         }
     }

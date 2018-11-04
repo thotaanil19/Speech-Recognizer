@@ -27,7 +27,7 @@ import edu.lu.sphinx.util.props.*;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * A simple form of the linguist. It makes the following simplifying assumptions: 1) Zero or one word per grammar node
@@ -185,7 +185,7 @@ public class DynamicFlatLinguist implements Linguist, Configurable {
     }
 
     public void allocate() throws IOException {
-        logger.info("Allocating DFLAT");
+        logger.debug("Allocating DFLAT");
         allocateAcousticModel();
         grammar.allocate();
         hmmPool = new HMMPool(acousticModel, logger, unitManager);
@@ -195,7 +195,7 @@ public class DynamicFlatLinguist implements Linguist, Configurable {
         timer.start();
         compileGrammar();
         timer.stop();
-        logger.info("Done allocating  DFLAT");
+        logger.debug("Done allocating  DFLAT");
     }
 
 

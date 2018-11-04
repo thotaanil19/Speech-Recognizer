@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Interface that Manages a feature or item path. Allows navigation to the
@@ -162,17 +162,13 @@ public class PathExtractor {
         Item pitem = findItem(item);
         Object results = null;
         if (pitem != null) {
-            if (LOGGER.isLoggable(Level.FINER)) {
-                LOGGER.finer("findFeature: Item [" + pitem + "], feature '"
+                LOGGER.debug("findFeature: Item [" + pitem + "], feature '"
                         + feature + "'");
-            }
             results = pitem.getFeatures().getObject(feature);
         }
 
         results = (results == null) ? "0" : results;
-        if (LOGGER.isLoggable(Level.FINER)) {
-            LOGGER.finer("findFeature: ...results = '" + results + "'");
-        }
+            LOGGER.debug("findFeature: ...results = '" + results + "'");
         return results;
     }
 

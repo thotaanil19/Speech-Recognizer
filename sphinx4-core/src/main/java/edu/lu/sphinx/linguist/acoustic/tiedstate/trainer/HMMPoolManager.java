@@ -20,7 +20,7 @@ import edu.lu.sphinx.util.LogMath;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** Manages the HMM pools. */
 class HMMPoolManager {
@@ -490,7 +490,7 @@ class HMMPoolManager {
                 float[] meansBuffer = buffer.getValues();
                 copyVector(meansBuffer, means);
             } else {
-                logger.info("Senone " + i + " not used.");
+                logger.debug("Senone " + i + " not used.");
             }
         }
     }

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import edu.lu.sphinx.linguist.dictionary.Dictionary;
 import edu.lu.sphinx.linguist.dictionary.Word;
@@ -152,14 +152,14 @@ public abstract class Grammar implements Configurable, GrammarInterface {
 
     /** Dumps statistics for this grammar */
     public void dumpStatistics() {
-        if (logger.isLoggable(Level.INFO)) {
+        if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
             int successorCount = 0;
-            logger.info("Num nodes : " + getNumNodes());
+            logger.debug("Num nodes : " + getNumNodes());
             for (GrammarNode grammarNode : grammarNodes)
                 successorCount += grammarNode.getSuccessors().length;
 
-            logger.info("Num arcs  : " + successorCount);
-            logger.info("Avg arcs  : "
+            logger.debug("Num arcs  : " + successorCount);
+            logger.debug("Avg arcs  : "
                     + ((float) successorCount / getNumNodes()));
         }
     }
@@ -185,7 +185,7 @@ public abstract class Grammar implements Configurable, GrammarInterface {
             }
             out.close();
         } catch (IOException ioe) {
-            logger.severe("Can't write random sentences to " + path + ' ' + ioe);
+            logger.warn("Can't write random sentences to " + path + ' ' + ioe);
         }
     }
 
@@ -420,7 +420,7 @@ public abstract class Grammar implements Configurable, GrammarInterface {
             add(node);
         } else {
             node = createGrammarNode(identity, false);
-            logger.warning("Can't find pronunciation for " + word);
+            logger.warn("Can't find pronunciation for " + word);
         }
         return node;
     }

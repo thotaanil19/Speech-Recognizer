@@ -13,22 +13,44 @@
  */
 package edu.lu.sphinx.linguist.acoustic.tiedstate;
 
+import static edu.lu.sphinx.linguist.acoustic.tiedstate.Pool.Feature.NUM_GAUSSIANS_PER_STATE;
+import static edu.lu.sphinx.linguist.acoustic.tiedstate.Pool.Feature.NUM_SENONES;
+import static edu.lu.sphinx.linguist.acoustic.tiedstate.Pool.Feature.NUM_STREAMS;
+
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import org.apache.log4j.Logger;
+
 import edu.lu.sphinx.decoder.adaptation.ClusteredDensityFileData;
 import edu.lu.sphinx.decoder.adaptation.Transform;
-import edu.lu.sphinx.linguist.acoustic.*;
+import edu.lu.sphinx.linguist.acoustic.Context;
+import edu.lu.sphinx.linguist.acoustic.HMM;
+import edu.lu.sphinx.linguist.acoustic.HMMPosition;
+import edu.lu.sphinx.linguist.acoustic.LeftRightContext;
+import edu.lu.sphinx.linguist.acoustic.Unit;
+import edu.lu.sphinx.linguist.acoustic.UnitManager;
 import edu.lu.sphinx.linguist.acoustic.tiedstate.HTK.GMMDiag;
 import edu.lu.sphinx.linguist.acoustic.tiedstate.HTK.HMMSet;
 import edu.lu.sphinx.linguist.acoustic.tiedstate.HTK.HMMState;
 import edu.lu.sphinx.linguist.acoustic.tiedstate.HTK.SingleHMM;
-import static edu.lu.sphinx.linguist.acoustic.tiedstate.Pool.Feature.*;
-import edu.lu.sphinx.util.*;
-import edu.lu.sphinx.util.props.*;
-
-import java.io.*;
-import java.net.URL;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import edu.lu.sphinx.util.LogMath;
+import edu.lu.sphinx.util.Utilities;
+import edu.lu.sphinx.util.props.PropertyException;
+import edu.lu.sphinx.util.props.PropertySheet;
+import edu.lu.sphinx.util.props.S4Boolean;
+import edu.lu.sphinx.util.props.S4Component;
+import edu.lu.sphinx.util.props.S4Double;
+import edu.lu.sphinx.util.props.S4Integer;
+import edu.lu.sphinx.util.props.S4String;
 
 /** 
  * Triphone selection algorithm:
@@ -263,10 +285,10 @@ public class HTKLoader implements Loader {
      */
     private void loadModelFiles(String MMFname) throws IOException {
 
-        logger.config("Loading HTK acoustic model: " + MMFname);
-        logger.config("    Path      : " + location);
-        logger.config("    modellName: " + model);
-        logger.config("    dataDir   : " + dataDir);
+        logger.warn("Loading HTK acoustic model: " + MMFname);
+        logger.warn("    Path      : " + location);
+        logger.warn("    modellName: " + model);
+        logger.warn("    dataDir   : " + dataDir);
 
         HTKStruct htkmods = new HTKStruct();
         htkmods.load(MMFname);
@@ -304,10 +326,10 @@ public class HTKLoader implements Loader {
         int numSenones = mixtureWeights.getStatesNum();
         int whichGaussian = 0;
 
-        logger.fine("NG " + numGaussiansPerSenone);
-        logger.fine("NS " + numSenones);
-        logger.fine("NMNS " + numMeans);
-        logger.fine("NMNS " + numVariances);
+        logger.warn("NG " + numGaussiansPerSenone);
+        logger.warn("NS " + numSenones);
+        logger.warn("NMNS " + numMeans);
+        logger.warn("NMNS " + numVariances);
 
         assert numGaussiansPerSenone > 0;
         assert numVariances == numSenones * numGaussiansPerSenone;
@@ -504,8 +526,8 @@ public class HTKLoader implements Loader {
                 Unit unit = unitManager.getUnit(name, attribute.equals(FILLER));
                 contextIndependentUnits.put(unit.getName(), unit);
 
-                if (logger.isLoggable(Level.FINE)) {
-                    logger.fine("Loaded " + unit);
+                if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                    logger.warn("Loaded " + unit);
                 }
 
                 // The first filler
@@ -562,8 +584,8 @@ public class HTKLoader implements Loader {
                             .equals(FILLER));
                     contextIndependentUnits.put(unit.getName(), unit);
 
-                    if (logger.isLoggable(Level.FINE)) {
-                        logger.fine("Loaded " + unit);
+                    if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                        logger.warn("Loaded " + unit);
                     }
 
                     // The first filler
@@ -656,8 +678,8 @@ public class HTKLoader implements Loader {
                 lastUnitName = unitName;
                 lastUnit = unit;
 
-                if (logger.isLoggable(Level.FINE)) {
-                    logger.fine("Loaded " + unit);
+                if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel())) {
+                    logger.warn("Loaded " + unit);
                 }
 
                 float[][] transitionMatrix = matrixPool.get(tmat);
@@ -765,7 +787,7 @@ public class HTKLoader implements Loader {
     }
 
     public void logInfo() {
-        logger.info("HTKLoader");
+        logger.debug("HTKLoader");
         meansPool.logInfo(logger);
         variancePool.logInfo(logger);
         matrixPool.logInfo(logger);
@@ -781,7 +803,7 @@ public class HTKLoader implements Loader {
             varianceTransformationVectorPool.logInfo(logger);
 
         senonePool.logInfo(logger);
-        logger.info("Context Independent Unit Entries: "
+        logger.debug("Context Independent Unit Entries: "
                 + contextIndependentUnits.size());
         hmmManager.logInfo(logger);
     }

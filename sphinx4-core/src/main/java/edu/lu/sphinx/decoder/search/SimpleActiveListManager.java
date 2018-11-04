@@ -20,7 +20,7 @@ import edu.lu.sphinx.util.props.S4ComponentList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * A list of ActiveLists. Different token types are placed in different lists.
@@ -90,11 +90,11 @@ public class SimpleActiveListManager implements ActiveListManager {
         currentActiveLists = new ActiveList[numStateOrder];
 
         if (activeListFactories.isEmpty()) {
-            logger.severe("No active list factories configured");
+            logger.warn("No active list factories configured");
             throw new Error("No active list factories configured");
         }
         if (activeListFactories.size() != currentActiveLists.length) {
-            logger.warning("Need " + currentActiveLists.length +
+            logger.warn("Need " + currentActiveLists.length +
                     " active list factories, found " +
                     activeListFactories.size());
         }

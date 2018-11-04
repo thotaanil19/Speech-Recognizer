@@ -5,15 +5,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import edu.lu.sphinx.decoder.search.Token;
-import edu.lu.sphinx.frontend.*;
+import edu.lu.sphinx.frontend.Data;
+import edu.lu.sphinx.frontend.DataEndSignal;
+import edu.lu.sphinx.frontend.DataStartSignal;
+import edu.lu.sphinx.frontend.DoubleData;
+import edu.lu.sphinx.frontend.RandomDataProcessor;
 import edu.lu.sphinx.frontend.databranch.DataBufferProcessor;
 import edu.lu.sphinx.frontend.endpoint.SpeechEndSignal;
 import edu.lu.sphinx.frontend.endpoint.SpeechStartSignal;
@@ -38,7 +41,7 @@ public class ScorerTests {
 
     @BeforeClass
     public static void configureLogger() {
-        Logger.getLogger(ScorerTests.class.getSimpleName()).setLevel(Level.FINER);
+        Logger.getLogger(ScorerTests.class.getSimpleName()).setLevel(org.apache.log4j.Level.DEBUG);
     }
 
 

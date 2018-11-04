@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /** A SAX XML Handler implementation that builds up the map of raw property data objects */
 public class ConfigHandler extends DefaultHandler {
@@ -134,7 +134,7 @@ public class ConfigHandler extends DefaultHandler {
             URL fileURL = new File(parent.getPath() + File.separatorChar +  configFileName).toURI().toURL();
 
             Logger logger = Logger.getLogger(ConfigHandler.class.getSimpleName());
-            logger.fine((replaceDuplicates ? "extending" : "including") + " config:" + fileURL.toURI());
+            logger.warn((replaceDuplicates ? "extending" : "including") + " config:" + fileURL.toURI());
 
             SaxLoader saxLoader = new SaxLoader(fileURL, globalProperties, rpdMap, replaceDuplicates);
             saxLoader.load();

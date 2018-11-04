@@ -19,7 +19,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import edu.lu.sphinx.linguist.WordSequence;
 import edu.lu.sphinx.linguist.dictionary.Dictionary;
@@ -190,7 +190,7 @@ public class LargeNGramModel implements LanguageModel {
     public void allocate() throws IOException {
         TimerPool.getTimer(this, "Load LM").start();
 
-        logger.info("Loading n-gram language model from: " + location);
+        logger.debug("Loading n-gram language model from: " + location);
 
         // create the log file if specified
         if (ngramLogFile != null)
@@ -243,7 +243,7 @@ public class LargeNGramModel implements LanguageModel {
             maxDepth = loader.getMaxDepth();
 
         for (int i = 1; i <= loader.getMaxDepth(); i++)
-            logger.info(Integer.toString(i) + "-grams: "
+            logger.debug(Integer.toString(i) + "-grams: "
                     + loader.getNumberNGrams(i));
 
         if (fullSmear) {
@@ -287,19 +287,19 @@ public class LargeNGramModel implements LanguageModel {
             Word word = dictionary.getWord(words[i]);
 
             if (word == null) {
-                logger.warning("The dictionary is missing a phonetic transcription for the word '"
+                logger.warn("The dictionary is missing a phonetic transcription for the word '"
                         + words[i] + "'");
                 missingWords++;
             }
 
             unigramIDMap.put(word, unigrams[i]);
 
-            if (logger.isLoggable(Level.FINE))
-                logger.fine("Word: " + word);
+            if (org.apache.log4j.Level.DEBUG .equals(logger.getLevel()))
+                logger.warn("Word: " + word);
         }
 
         if (missingWords > 0)
-            logger.warning("Dictionary is missing " + missingWords
+            logger.warn("Dictionary is missing " + missingWords
                     + " words that are contained in the language model.");
     }
 
@@ -339,7 +339,7 @@ public class LargeNGramModel implements LanguageModel {
         for (int i = 2; i <= loader.getMaxDepth(); i++) {
             loadedNGramBuffers[i - 1] = new HashMap<WordSequence, NGramBuffer>();
         }
-        logger.info("LM Cache Size: " + ngramProbCache.size() + " Hits: "
+        logger.debug("LM Cache Size: " + ngramProbCache.size() + " Hits: "
                 + ngramHits + " Misses: " + ngramMisses);
         if (clearCacheAfterUtterance) {
             ngramProbCache = new LRUCache<WordSequence, Float>(ngramCacheSize);
@@ -683,8 +683,8 @@ public class LargeNGramModel implements LanguageModel {
             }
         }
 
-        if (fullSmear && logger.isLoggable(Level.FINE))
-            logger.fine("SmearTerm: " + smearTerm);
+        if (fullSmear && org.apache.log4j.Level.DEBUG .equals(logger.getLevel()))
+            logger.warn("SmearTerm: " + smearTerm);
 
         return smearTerm;
     }
@@ -721,8 +721,8 @@ public class LargeNGramModel implements LanguageModel {
                         + smearCount);
         }
 
-        if (fullSmear && logger.isLoggable(Level.FINE))
-            logger.fine("SmearTerm: " + smearTerm);
+        if (fullSmear && org.apache.log4j.Level.DEBUG .equals(logger.getLevel()))
+            logger.warn("SmearTerm: " + smearTerm);
 
         return smearTerm;
     }
