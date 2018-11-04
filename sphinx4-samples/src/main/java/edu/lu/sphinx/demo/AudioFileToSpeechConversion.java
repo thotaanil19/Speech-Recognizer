@@ -31,7 +31,7 @@ public class AudioFileToSpeechConversion {
 				configuration);
 		InputStream stream = new FileInputStream(
 				new File(
-						"D:\\Anil\\Grad Seminar\\project\\sphinx4-5prealpha-src\\sphinx4-5prealpha-src\\sphinx4-samples\\src\\main\\resources\\edu\\cmu\\sphinx\\demo\\aligner\\10001-90210-01803.wav"));
+						"D:/Anil/Grad Seminar/project/Speech-Recognizer/sphinx4-samples/src/main/resources/edu/lu/sphinx/demo/aligner/10001-90210-01803.wav"));
 
 		recognizer.startRecognition(stream);
 
