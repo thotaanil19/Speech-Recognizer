@@ -1,4 +1,4 @@
-package edu.lu.demo;
+package edu.lu.sphinx.demo;
 
 import java.io.File;
 import java.io.FileInputStream;
