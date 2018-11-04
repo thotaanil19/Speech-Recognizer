@@ -9,15 +9,15 @@
 
 
     <!--  component can be overridden as a whole. it is not possible to override specific component properties -->
-    <component name="duco" type="edu.cmu.sphinx.util.props.DummyComp">
+    <component name="duco" type="edu.lu.sphinx.util.props.DummyComp">
         <property name="beamWidth" value="4711"/>
         <property name="frontend" value="newFrontEnd"/>
-        <property name="anotherFrontend" value="edu.cmu.sphinx.util.props.DummyFrontEnd"/>        
+        <property name="anotherFrontend" value="edu.lu.sphinx.util.props.DummyFrontEnd"/>        
     </component>
     
 
 
-    <component name="newFrontEnd" type="edu.cmu.sphinx.util.props.DummyFrontEnd">
+    <component name="newFrontEnd" type="edu.lu.sphinx.util.props.DummyFrontEnd">
         <propertylist name="dataProcs"/>
     </component>
 </config>

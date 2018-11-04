@@ -22,7 +22,7 @@ options
 
 PARSER_BEGIN(JSGFParser)
 
-package edu.cmu.sphinx.jsgf.parser;
+package edu.lu.sphinx.jsgf.parser;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -37,11 +37,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import edu.cmu.sphinx.jsgf.rule.*;
-import edu.cmu.sphinx.jsgf.JSGFRuleGrammar;
-import edu.cmu.sphinx.jsgf.JSGFRuleGrammarFactory;
-import edu.cmu.sphinx.jsgf.JSGFRuleGrammarManager;
-import edu.cmu.sphinx.jsgf.JSGFGrammarParseException;
+import edu.lu.sphinx.jsgf.rule.*;
+import edu.lu.sphinx.jsgf.JSGFRuleGrammar;
+import edu.lu.sphinx.jsgf.JSGFRuleGrammarFactory;
+import edu.lu.sphinx.jsgf.JSGFRuleGrammarManager;
+import edu.lu.sphinx.jsgf.JSGFGrammarParseException;
 
 class JSGFEncoding {
     public String version;

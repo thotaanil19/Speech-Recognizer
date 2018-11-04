@@ -15,7 +15,7 @@
     <!-- The frontend configuration                               -->
     <!-- ******************************************************** -->
 
-    <component name="cepstraFrontEnd" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="cepstraFrontEnd" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>streamDataSource</item>
             <item>preemphasizer</item>
@@ -26,7 +26,7 @@
         </propertylist>
     </component>
 
-    <component name="spectraFrontEnd" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="spectraFrontEnd" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>streamDataSource</item>
             <item>preemphasizer</item>
@@ -35,7 +35,7 @@
         </propertylist>
     </component>
 
-    <component name="plpFrontEnd" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="plpFrontEnd" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>streamDataSource</item>
             <item>preemphasizer</item>
@@ -48,38 +48,38 @@
     </component>
 
     <component name="preemphasizer"
-               type="edu.cmu.sphinx.frontend.filter.Preemphasizer"/>
+               type="edu.lu.sphinx.frontend.filter.Preemphasizer"/>
 
     <component name="dither"
-               type="edu.cmu.sphinx.frontend.filter.Dither"/>
+               type="edu.lu.sphinx.frontend.filter.Dither"/>
     <component name="windower"
-               type="edu.cmu.sphinx.frontend.window.RaisedCosineWindower">
+               type="edu.lu.sphinx.frontend.window.RaisedCosineWindower">
     </component>
 
     <component name="fft"
-               type="edu.cmu.sphinx.frontend.transform.DiscreteFourierTransform"/>
+               type="edu.lu.sphinx.frontend.transform.DiscreteFourierTransform"/>
 
     <component name="melFilterBank"
-               type="edu.cmu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank">
+               type="edu.lu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank">
     </component>
 
     <component name="dct"
-               type="edu.cmu.sphinx.frontend.transform.DiscreteCosineTransform"/>
+               type="edu.lu.sphinx.frontend.transform.DiscreteCosineTransform"/>
 
-    <component name="cmn" type="edu.cmu.sphinx.frontend.feature.BatchCMN"/>
+    <component name="cmn" type="edu.lu.sphinx.frontend.feature.BatchCMN"/>
 
     <component name="featureExtraction"
-               type="edu.cmu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
+               type="edu.lu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
 
     <component name="streamDataSource"
-               type="edu.cmu.sphinx.frontend.util.StreamDataSource">
+               type="edu.lu.sphinx.frontend.util.StreamDataSource">
         <property name="sampleRate" value="16000"/>
     </component>
 
 
     <component name="plpFrequencyFilterBank"
-               type="edu.cmu.sphinx.frontend.frequencywarp.PLPFrequencyFilterBank"/>
+               type="edu.lu.sphinx.frontend.frequencywarp.PLPFrequencyFilterBank"/>
 
     <component name="plpCepstrumProducer"
-               type="edu.cmu.sphinx.frontend.frequencywarp.PLPCepstrumProducer"/>
+               type="edu.lu.sphinx.frontend.frequencywarp.PLPCepstrumProducer"/>
 </config>

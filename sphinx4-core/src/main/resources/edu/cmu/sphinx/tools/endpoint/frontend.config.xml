@@ -3,7 +3,7 @@
    Sphinx-4 Configuration file
 -->
 <config>
-    <component name="endpointer" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="endpointer" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource</item>
             <item>dataBlocker</item>
@@ -13,18 +13,18 @@
         </propertylist>
     </component>
     
-    <component name="audioFileDataSource" type="edu.cmu.sphinx.frontend.util.AudioFileDataSource"/>
+    <component name="audioFileDataSource" type="edu.lu.sphinx.frontend.util.AudioFileDataSource"/>
 
-    <component name="dataBlocker" type="edu.cmu.sphinx.frontend.DataBlocker"/>
+    <component name="dataBlocker" type="edu.lu.sphinx.frontend.DataBlocker"/>
 
-    <component name="speechClassifier" type="edu.cmu.sphinx.frontend.endpoint.SpeechClassifier"/>
+    <component name="speechClassifier" type="edu.lu.sphinx.frontend.endpoint.SpeechClassifier"/>
     
-    <component name="speechMarker" type="edu.cmu.sphinx.frontend.endpoint.SpeechMarker">
+    <component name="speechMarker" type="edu.lu.sphinx.frontend.endpoint.SpeechMarker">
     	<property name="speechLeader" value="200"/>
     	<property name="speechTrailer" value="200"/>
     </component>
  	
-    <component name="wavWriter" type="edu.cmu.sphinx.frontend.util.WavWriter">
+    <component name="wavWriter" type="edu.lu.sphinx.frontend.util.WavWriter">
 		<property name="outFilePattern" value="test-seg000000"/>
 		<property name="captureUtterances" value="true"/>
     </component>

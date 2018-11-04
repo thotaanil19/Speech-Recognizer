@@ -8,17 +8,17 @@
     <property name="hiddenproductad" value="opencards"/>
     <property name="globFooBaz" value="false"/>
 
-    <component name="processor" type="edu.cmu.sphinx.util.props.DummyProcessor">
+    <component name="processor" type="edu.lu.sphinx.util.props.DummyProcessor">
     </component>
 
-    <component name="aDummyFrontEnd" type="edu.cmu.sphinx.util.props.DummyFrontEnd">
+    <component name="aDummyFrontEnd" type="edu.lu.sphinx.util.props.DummyFrontEnd">
         <propertylist name="dataProcs">
             <item>processor</item>
             <item>${anotherDataProc}</item>
         </propertylist>
     </component>
 
-    <component name="duco" type="edu.cmu.sphinx.util.props.DummyComp">
+    <component name="duco" type="edu.lu.sphinx.util.props.DummyComp">
         <property name="alpha" value="${myalpha}"/>
         <property name="beamWidth" value="123"/>
         <property name="useFooBaz" value="${globFooBaz}"/>

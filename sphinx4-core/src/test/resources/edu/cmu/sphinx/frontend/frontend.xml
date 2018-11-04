@@ -1,6 +1,6 @@
 <config>
 
-    <component name="preempTest" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="preempTest" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource </item>
             <item>dataBlocker </item>
@@ -10,7 +10,7 @@
         </propertylist>
     </component>
 
-    <component name="windowTest" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="windowTest" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource </item>
             <item>dataBlocker </item>
@@ -21,7 +21,7 @@
         </propertylist>
     </component>
 
-    <component name="fftTest" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="fftTest" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource </item>
             <item>dataBlocker </item>
@@ -33,7 +33,7 @@
         </propertylist>
     </component>
 
-    <component name="melTest" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="melTest" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource </item>
             <item>dataBlocker </item>
@@ -46,7 +46,7 @@
         </propertylist>
     </component>
 
-    <component name="dctTest" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="dctTest" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource </item>
             <item>dataBlocker </item>
@@ -60,7 +60,7 @@
         </propertylist>
     </component>
 
-    <component name="cmnTest" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="cmnTest" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource </item>
             <item>dataBlocker </item>
@@ -75,7 +75,7 @@
         </propertylist>
     </component>
 
-    <component name="feTest" type="edu.cmu.sphinx.frontend.FrontEnd">
+    <component name="feTest" type="edu.lu.sphinx.frontend.FrontEnd">
         <propertylist name="pipeline">
             <item>audioFileDataSource </item>
             <item>dataBlocker </item>
@@ -91,46 +91,46 @@
         </propertylist>
     </component>
 
-    <component name="audioFileDataSource" type="edu.cmu.sphinx.frontend.util.AudioFileDataSource"/>
+    <component name="audioFileDataSource" type="edu.lu.sphinx.frontend.util.AudioFileDataSource"/>
 
     <component name="microphone" 
-                type="edu.cmu.sphinx.frontend.util.Microphone">
+                type="edu.lu.sphinx.frontend.util.Microphone">
         <property name="closeBetweenUtterances" value="false"/>
     </component>
 
-    <component name="dataBlocker" type="edu.cmu.sphinx.frontend.DataBlocker"/>
+    <component name="dataBlocker" type="edu.lu.sphinx.frontend.DataBlocker"/>
 
     <component name="speechClassifier"
-                type="edu.cmu.sphinx.frontend.endpoint.SpeechClassifier">
+                type="edu.lu.sphinx.frontend.endpoint.SpeechClassifier">
         <property name="threshold" value="13"/>
     </component>
     
     <component name="speechMarker" 
-                type="edu.cmu.sphinx.frontend.endpoint.SpeechMarker">
+                type="edu.lu.sphinx.frontend.endpoint.SpeechMarker">
     </component>
     
     <component name="preemphasizer"
-		type="edu.cmu.sphinx.frontend.filter.Preemphasizer"/>
+		type="edu.lu.sphinx.frontend.filter.Preemphasizer"/>
 
     <component name="dataDumper"
-		type="edu.cmu.sphinx.frontend.util.DataDumper"/>
+		type="edu.lu.sphinx.frontend.util.DataDumper"/>
     
     <component name="windower" 
-	type="edu.cmu.sphinx.frontend.window.RaisedCosineWindower"/>
+	type="edu.lu.sphinx.frontend.window.RaisedCosineWindower"/>
     
     <component name="fft" 
-        type="edu.cmu.sphinx.frontend.transform.DiscreteFourierTransform"/>
+        type="edu.lu.sphinx.frontend.transform.DiscreteFourierTransform"/>
     
     <component name="melFilterBank" 
-        type="edu.cmu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank"/>
+        type="edu.lu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank"/>
     
     <component name="dct" 
-            type="edu.cmu.sphinx.frontend.transform.DiscreteCosineTransform"/>
+            type="edu.lu.sphinx.frontend.transform.DiscreteCosineTransform"/>
     
     <component name="liveCMN" 
-                type="edu.cmu.sphinx.frontend.feature.LiveCMN"/>
+                type="edu.lu.sphinx.frontend.feature.LiveCMN"/>
     
     <component name="featureExtraction" 
-		type="edu.cmu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
+		type="edu.lu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
 
 </config>
