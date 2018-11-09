@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2002 Carnegie Mellon University.  
+ *   
  * All Rights Reserved.  Use is subject to license terms.
  * 
  * See the file "license.terms" for information on usage and
