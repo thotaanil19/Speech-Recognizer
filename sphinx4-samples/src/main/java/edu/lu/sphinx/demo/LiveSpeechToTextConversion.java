@@ -24,7 +24,7 @@ public class LiveSpeechToTextConversion {
 		SpeechResult result = recognizer.getResult();
 		// Pause recognition process. It can be resumed then with startRecognition(false).
 		while ((result = recognizer.getResult()) != null) {
-			System.out.println("Hypothesis: "+ result.getHypothesis());
+			System.out.println(result.getHypothesis());
 		}
 		recognizer.stopRecognition();
 	}

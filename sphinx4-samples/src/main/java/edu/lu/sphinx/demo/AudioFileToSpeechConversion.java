@@ -3,10 +3,8 @@ package edu.lu.sphinx.demo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.net.URL;
 
 import edu.lu.sphinx.api.Configuration;
-import edu.lu.sphinx.api.LiveSpeechRecognizer;
 import edu.lu.sphinx.api.SpeechResult;
 import edu.lu.sphinx.api.StreamSpeechRecognizer;
 
@@ -37,7 +35,7 @@ public class AudioFileToSpeechConversion {
 
 		SpeechResult result;
 		while ((result = recognizer.getResult()) != null) {
-			System.out.println("Hypothesis: " + result.getHypothesis());
+			System.out.println(result.getHypothesis());
 		}
 		recognizer.stopRecognition();
 	}
