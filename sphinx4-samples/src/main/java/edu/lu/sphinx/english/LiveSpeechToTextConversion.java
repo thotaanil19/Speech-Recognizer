@@ -1,4 +1,4 @@
-package edu.lu.sphinx.demo;
+package edu.lu.sphinx.english;
 
 import edu.lu.sphinx.api.Configuration;
 import edu.lu.sphinx.api.LiveSpeechRecognizer;
@@ -15,8 +15,8 @@ public class LiveSpeechToTextConversion {
 	}
 
 	public static void liveSpeechRecognizer(Configuration configuration) throws Exception {
-		configuration.setGrammarPath("resource:/grammar");
-		configuration.setGrammarName("Test");
+		configuration.setGrammarPath("resource:/grammar/en-us");
+		configuration.setGrammarName("main");
 		configuration.setUseGrammar(true);
 		LiveSpeechRecognizer recognizer = new LiveSpeechRecognizer(configuration);
 		// Start recognition process pruning previously cached data.

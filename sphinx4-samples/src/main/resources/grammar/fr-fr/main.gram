@@ -1,0 +1,7 @@
+grammar Fr-Test;
+
+public <number> = un | deux | trois | quatre | cinq| six | sept | huit | neuf | dix;
+
+public <words> = salut | sortie;
+
+
